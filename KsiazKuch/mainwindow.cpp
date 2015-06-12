@@ -3,6 +3,7 @@
 #include <QDebug>
 #include <QtSql/QSqlDatabase>
 #include <QtSql/QSql>
+#include <QtSql/QSqlQuery>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
