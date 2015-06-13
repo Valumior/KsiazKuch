@@ -26,7 +26,7 @@ void PrzepisSkladnik::insertToDb(QSqlQuery query, int przepisId)
 QList<PrzepisSkladnik> PrzepisSkladnik::getObjects(QSqlQuery query, int przepisId)
 {
     QList<PrzepisSkladnik> list;
-    QString q = "SELECT skladniki_przepis.liczba, skladnik.id skladnik.nazwa, skladnik.miara, ";
+    QString q = "SELECT skladniki_przepis.liczba, skladnik.id, skladnik.nazwa, skladnik.miara, ";
     q = q + "wartosci_odzywcze.kalorie, wartosci_odzywcze.tluszcze_calkowite, wartosci_odzywcze.tluszcze_nasycone, " +
             "wartosci_odzywcze.tluszcze_nienasycone, wartosci_odzywcze.cholesterol, wartosci_odzywcze.sod, " +
             "wartosci_odzywcze.weglowodany, wartosci_odzywcze.blonnik, wartosci_odzywcze.cukry, wartosci_odzywcze.bialka " +
