@@ -18,25 +18,25 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    addprzepiswindow.cpp \
-    addskladnikwindow.cpp \
-    showprzepiswindow.cpp \
-    showskladnikiwindow.cpp \
     przepis.cpp \
     skladnik.cpp \
-    wartosciodzywcze.cpp
+    wartosciodzywcze.cpp \
+    addprzepisdialog.cpp \
+    addskladnikdialog.cpp \
+    showprzepisydialog.cpp \
+    showskladnikidialog.cpp
 
 HEADERS  += mainwindow.h \
-    addprzepiswindow.h \
-    addskladnikwindow.h \
-    showprzepiswindow.h \
-    showskladnikiwindow.h \
     przepis.h \
     skladnik.h \
-    wartosciodzywcze.h
+    wartosciodzywcze.h \
+    addprzepisdialog.h \
+    addskladnikdialog.h \
+    showprzepisydialog.h \
+    showskladnikidialog.h
 
 FORMS    += mainwindow.ui \
-    addprzepiswindow.ui \
-    addskladnikwindow.ui \
-    showprzepiswindow.ui \
-    showskladnikiwindow.ui
+    addprzepisdialog.ui \
+    addskladnikdialog.ui \
+    showprzepisydialog.ui \
+    showskladnikidialog.ui
