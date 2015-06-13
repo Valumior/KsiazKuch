@@ -20,7 +20,7 @@ create table wartosci_odzywcze (
 create table przepis (
 	id integer primary key autoincrement,
 	nazwa text not null,
-	czas przygotowania integer not null,
+	czas_przygotowania integer not null,
 	trudnosc integer,
 	ulubione numeric,
 	instrukcja text not null

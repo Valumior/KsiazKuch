@@ -40,9 +40,7 @@ Skladnik::Skladnik(int id, QSqlQuery query)
 void Skladnik::insertToDb(QSqlQuery query)
 {
     wartosciOdzywcze.insertToDb(query);
-    query.prepare("SELECT seq FROM sqlite_sequences WHERE name=:wart");
-    query.bindValue(":wart", "wartosci_odzywcze");
-    query.exec();
+    query.exec("SELECT last_insert_rowid()");
 
     int wartOdzId;
 

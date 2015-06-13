@@ -28,9 +28,7 @@ void Przepis::insertToDb(QSqlQuery query)
     query.bindValue(":inst", this->instrukcja);
     query.exec();
 
-    query.prepare("SELECT seq FROM sqlite_sequences WHERE name=:prz");
-    query.bindValue(":prze", "przepis");
-    query.exec();
+    query.exec("SELECT last_insert_rowid()");
 
     int przepId;
 
