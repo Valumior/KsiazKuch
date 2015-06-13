@@ -17,8 +17,20 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    addprzepiswindow.cpp \
+    addskladnikwindow.cpp \
+    showprzepiswindow.cpp \
+    showskladnikiwindow.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    addprzepiswindow.h \
+    addskladnikwindow.h \
+    showprzepiswindow.h \
+    showskladnikiwindow.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    addprzepiswindow.ui \
+    addskladnikwindow.ui \
+    showprzepiswindow.ui \
+    showskladnikiwindow.ui
