@@ -30,7 +30,8 @@ QList<PrzepisSkladnik> PrzepisSkladnik::getObjects(QSqlQuery query, int przepisI
     q = q + "wartosci_odzywcze.kalorie, wartosci_odzywcze.tluszcze_calkowite, wartosci_odzywcze.tluszcze_nasycone, " +
             "wartosci_odzywcze.tluszcze_nienasycone, wartosci_odzywcze.cholesterol, wartosci_odzywcze.sod, " +
             "wartosci_odzywcze.weglowodany, wartosci_odzywcze.blonnik, wartosci_odzywcze.cukry, wartosci_odzywcze.bialka " +
-            "FROM skladniki_przepis NATURAL JOIN skladnik NATURAL JOIN wartosci_odzywcze WHERE skladniki_przepis.przepis=:id";
+            "FROM skladniki_przepis JOIN skladnik ON skladniki_przepis.skladnik=skladnik.id NATURAL JOIN wartosci_odzywcze " +
+            "WHERE skladniki_przepis.przepis=:id";
     query.prepare(q);
     query.bindValue(":id", przepisId);
     query.exec();
