@@ -43,6 +43,8 @@ public:
     int getBialka() const;
     void setBialka(int value);
 
+    int getId() const;
+
 private:
     int id;
     int kalorie;
