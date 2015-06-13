@@ -16,6 +16,9 @@ public:
     int getLiczba() const;
     void setLiczba(int value);
 
+    Skladnik getSkladnik() const;
+    void setSkladnik(Skladnik &value);
+
 private:
     int liczba;
     Skladnik skladnik;
