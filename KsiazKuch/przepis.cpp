@@ -119,7 +119,7 @@ QList<PrzepisSkladnik> Przepis::getSkladniki() const
 
 void Przepis::setSkladniki(const QList<PrzepisSkladnik> &value)
 {
-    skladniki = value;
+    skladniki = QList<PrzepisSkladnik>(value);
 }
 
 int Przepis::getId() const
