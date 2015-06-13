@@ -10,7 +10,8 @@ public:
     {
         Latwe = 0,
         Srednie = 1,
-        Trudne = 2
+        Trudne = 2,
+        MistrzKuchni = 3
     };
 
     Przepis();
