@@ -32,13 +32,15 @@ void Przepis::insertToDb(QSqlQuery query)
     query.bindValue(":prze", "przepis");
     query.exec();
 
+    int przepId;
+
     if(query.next())
     {
-        this->id = query.value(0).itInt();
+        przepId = query.value(0).toInt();
     }
 
     for(int i = 0; i < this->skladniki.count(); ++i)
-        skladniki.at(i).insertToDb(query,this->id);
+        this->skladniki[i].insertToDb(query, przepId);
 }
 
 QString Przepis::getNazwa() const
