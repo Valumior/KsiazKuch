@@ -6,7 +6,7 @@
 class Przepis
 {
 public:
-    enum Trundnosc: unsigned char
+    enum Trudnosc: unsigned char
     {
         Latwe = 0,
         Srednie = 1,
@@ -15,10 +15,27 @@ public:
     };
 
     Przepis();
+    Przepis(QString nazwa, int czasPrzygotowania, Trudnosc trudnosc, bool ulubione, QString instrukcja);
+
+    QString getNazwa() const;
+    void setNazwa(const QString &value);
+
+    int getCzasPrzygotowania() const;
+    void setCzasPrzygotowania(int value);
+
+    Trudnosc getTrudnosc() const;
+    void setTrudnosc(const Trudnosc &value);
+
+    bool getUlubione() const;
+    void setUlubione(bool value);
+
+    QString getInstrukcja() const;
+    void setInstrukcja(const QString &value);
+
 private:
     QString nazwa;
     int czasPrzygotowania;
-    Trundnosc trudnosc;
+    Trudnosc trudnosc;
     bool ulubione;
     QString instrukcja;
 };
