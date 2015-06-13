@@ -44,7 +44,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="addSkladnikButton">
        <property name="text">
         <string>Dodaj składnik</string>
        </property>
@@ -63,14 +63,14 @@
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_2">
      <item>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="seePrzepisyButton">
        <property name="text">
         <string>Przeglądaj przepisy</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_3">
+      <widget class="QPushButton" name="seeSkaldnikiButton_3">
        <property name="text">
         <string>Przeglądaj składniki</string>
        </property>

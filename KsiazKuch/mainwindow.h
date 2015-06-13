@@ -18,6 +18,9 @@ public:
 private slots:
     void on_actionWyjscie_triggered();
     void showAddPrzepis();
+    void showAddSkladnik();
+    void showSeePrzepisy();
+    void showSeeSkladniki();
 
 private:
     Ui::MainWindow *ui;
