@@ -1,6 +1,7 @@
 #ifndef PRZEPIS_H
 #define PRZEPIS_H
 
+#include <QString>
 
 class Przepis
 {
@@ -14,11 +15,11 @@ public:
 
     Przepis();
 private:
-    string nazwa;
+    QString nazwa;
     int czasPrzygotowania;
-    Trudnosc trudnosc;
+    Przepis::Trundnosc trudnosc;
     bool ulubione;
-    string instrukcja;
+    QString instrukcja;
 };
 
 #endif // PRZEPIS_H

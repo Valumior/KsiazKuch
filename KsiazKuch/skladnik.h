@@ -1,6 +1,7 @@
 #ifndef SKLADNIK_H
 #define SKLADNIK_H
 
+#include <QString>
 #include "wartosciodzywcze.h"
 
 class Skladnik
@@ -15,7 +16,7 @@ public:
 
     Skladnik();
 private:
-    string nazwa;
+    QString nazwa;
     Miara miara;
     WartosciOdzywcze wartosci_odzywcze;
 };
