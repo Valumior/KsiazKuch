@@ -8,7 +8,7 @@ class PrzepisSkladnik
 {
 public:
     PrzepisSkladnik();
-    PrzepisSkladnik(int count, Skladnik &skladnik);
+    PrzepisSkladnik(int liczba, Skladnik &skladnik);
 
     void insertToDb(QSqlQuery query, int przepisId);
     static QList<PrzepisSkladnik> getObjects(QSqlQuery query, int przepisId);
