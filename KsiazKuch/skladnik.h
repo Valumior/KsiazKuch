@@ -12,7 +12,7 @@ public:
         Sztuki = 0,
         Mililitry = 1,
         Gramy = 2
-    }
+    };
 
     Skladnik();
 private:

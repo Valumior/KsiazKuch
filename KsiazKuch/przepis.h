@@ -17,7 +17,7 @@ public:
 private:
     QString nazwa;
     int czasPrzygotowania;
-    Przepis::Trundnosc trudnosc;
+    Trundnosc trudnosc;
     bool ulubione;
     QString instrukcja;
 };
