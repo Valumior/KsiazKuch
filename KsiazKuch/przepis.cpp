@@ -5,8 +5,9 @@ Przepis::Przepis()
 
 }
 
-Przepis::Przepis(QString nazwa, int czasPrzygotowania, Przepis::Trudnosc trudnosc, bool ulubione, QString instrukcja)
+Przepis::Przepis(int id ,QString nazwa, int czasPrzygotowania, Przepis::Trudnosc trudnosc, bool ulubione, QString instrukcja)
 {
+    this->id = id;
     this->nazwa = nazwa;
     this->czasPrzygotowania = czasPrzygotowania;
     this->trudnosc = trudnosc;

@@ -15,7 +15,7 @@ public:
     };
 
     Skladnik();
-    Skladnik(QString nazwa, Miara miara, WartosciOdzywcze wartosciOdzywcze);
+    Skladnik(int id ,QString nazwa, Miara miara, WartosciOdzywcze wartosciOdzywcze);
     QString getNazwa() const;
 
     void setNazwa(const QString &value);
@@ -25,6 +25,8 @@ public:
 
     WartosciOdzywcze getWartosciOdzywcze() const;
     void setWartosciOdzywcze(const WartosciOdzywcze &value);
+
+    int getId() const;
 
 private:
     int id;
