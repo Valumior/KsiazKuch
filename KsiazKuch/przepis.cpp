@@ -37,8 +37,8 @@ void Przepis::insertToDb(QSqlQuery query)
         przepId = query.value(0).toInt();
     }
 
-    for(int i = 0; i < this->skladniki.count(); ++i)
-        this->skladniki[i].insertToDb(query, przepId);
+    foreach(PrzepisSkladnik skladnik, this->skladniki)
+        skladnik.insertToDb(query, przepId);
 }
 
 QList<Przepis> Przepis::getObjects(QSqlQuery query, QString filter)
@@ -57,8 +57,8 @@ QList<Przepis> Przepis::getObjects(QSqlQuery query, QString filter)
         list.append(prze);
     }
 
-    for(int i = 0; i < list.count(); ++i)
-        list[i].setSkladniki(PrzepisSkladnik::getObjects(query, list[i].getId()));
+    foreach(Przepis przepis, list)
+        przepis.setSkladniki(PrzepisSkladnik::getObjects(query, przepis.getId()));
 
     return list;
 }

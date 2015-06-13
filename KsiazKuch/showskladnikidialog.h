@@ -2,6 +2,8 @@
 #define SHOWSKLADNIKIDIALOG_H
 
 #include <QDialog>
+#include <QList>
+#include "skladnik.h"
 
 namespace Ui {
 class ShowSkladnikiDialog;
@@ -17,6 +19,7 @@ public:
 
 private:
     Ui::ShowSkladnikiDialog *ui;
+    QList<Skladnik> skladniks;
 };
 
 #endif // SHOWSKLADNIKIDIALOG_H
