@@ -3,6 +3,7 @@
 
 #include <QString>
 #include <QSqlQuery>
+#include <QList>
 #include "wartosciodzywcze.h"
 
 class Skladnik
@@ -20,6 +21,7 @@ public:
     Skladnik(int id, QSqlQuery query);
 
     void insertToDb(QSqlQuery query);
+    static QList<Skladnik> getObjects(QSqlQuery query, QString filter="");
 
     QString getNazwa() const;
     void setNazwa(const QString &value);

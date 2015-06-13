@@ -51,7 +51,7 @@ void WartosciOdzywcze::insertToDb(QSqlQuery query)
 {
     QString q = "INSERT INTO wartosci_odzywcze ";
     q = q + "(kalorie, tluszcze_calkowite, tluszcze_nasycone, tluszcze_nienasycone, " +
-            "cholesterol, sod, weglowodany, cukry, bialka) " +
+            "cholesterol, sod, weglowodany, blonnik, cukry, bialka) " +
             "VALUES (:kal, :tcal, :tnas, :tnnas, :chol, :sod, :wegl, :blo, :cuk, :bia)";
     query.prepare(q);
     query.bindValue(":kal", this->kalorie);
