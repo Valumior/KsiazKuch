@@ -21,13 +21,19 @@ SOURCES += main.cpp\
     addprzepiswindow.cpp \
     addskladnikwindow.cpp \
     showprzepiswindow.cpp \
-    showskladnikiwindow.cpp
+    showskladnikiwindow.cpp \
+    przepis.cpp \
+    skladnik.cpp \
+    wartosciodzywcze.cpp
 
 HEADERS  += mainwindow.h \
     addprzepiswindow.h \
     addskladnikwindow.h \
     showprzepiswindow.h \
-    showskladnikiwindow.h
+    showskladnikiwindow.h \
+    przepis.h \
+    skladnik.h \
+    wartosciodzywcze.h
 
 FORMS    += mainwindow.ui \
     addprzepiswindow.ui \
