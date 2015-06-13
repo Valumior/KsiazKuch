@@ -1,13 +1,14 @@
 #include "przepisskladnik.h"
+#include <QVariant>
 
 PrzepisSkladnik::PrzepisSkladnik()
 {
 
 }
 
-PrzepisSkladnik::PrzepisSkladnik(int count, Skladnik &skladnik)
+PrzepisSkladnik::PrzepisSkladnik(int liczba, Skladnik &skladnik)
 {
-    this->count = count;
+    this->liczba = liczba;
     this->skladnik = skladnik;
 }
 
