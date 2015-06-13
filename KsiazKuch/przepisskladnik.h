@@ -11,8 +11,12 @@ public:
     PrzepisSkladnik(int count, Skladnik &skladnik);
 
     void insertToDb(QSqlQuery query, int przepisId);
+
+    int getLiczba() const;
+    void setLiczba(int value);
+
 private:
-    int count;
+    int liczba;
     Skladnik skladnik;
 };
 
