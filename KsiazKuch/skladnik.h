@@ -2,6 +2,7 @@
 #define SKLADNIK_H
 
 #include <QString>
+#include <QSqlQuery>
 #include "wartosciodzywcze.h"
 
 class Skladnik
@@ -16,8 +17,11 @@ public:
 
     Skladnik();
     Skladnik(QString nazwa, Miara miara, WartosciOdzywcze wartosciOdzywcze);
-    QString getNazwa() const;
+    Skladnik(int id, QSqlQuery query);
 
+    void insertToDb(QSqlQuery query);
+
+    QString getNazwa() const;
     void setNazwa(const QString &value);
 
     Miara getMiara() const;

@@ -163,3 +163,8 @@ void WartosciOdzywcze::setBialka(int value)
 {
     bialka = value;
 }
+int WartosciOdzywcze::getId() const
+{
+    return id;
+}
+
