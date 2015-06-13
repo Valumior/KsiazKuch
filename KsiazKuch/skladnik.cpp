@@ -63,7 +63,7 @@ void Skladnik::insertToDb(QSqlQuery query)
 QList<Skladnik> Skladnik::getObjects(QSqlQuery query, QString filter)
 {
     QList<Skladnik> list = QList<Skladnik>();
-    QString q = "SELECT skladnik.id skladnik.nazwa, skladnik.miara, ";
+    QString q = "SELECT skladnik.id, skladnik.nazwa, skladnik.miara, ";
     q = q + "wartosci_odzywcze.kalorie, wartosci_odzywcze.tluszcze_calkowite, wartosci_odzywcze.tluszcze_nasycone, " +
             "wartosci_odzywcze.tluszcze_nienasycone, wartosci_odzywcze.cholesterol, wartosci_odzywcze.sod, " +
             "wartosci_odzywcze.weglowodany, wartosci_odzywcze.blonnik, wartosci_odzywcze.cukry, wartosci_odzywcze.bialka " +
