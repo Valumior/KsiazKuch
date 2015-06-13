@@ -1,4 +1,5 @@
 #include "przepis.h"
+#include <QVariant>
 
 Przepis::Przepis()
 {
@@ -13,6 +14,31 @@ Przepis::Przepis(int id ,QString nazwa, int czasPrzygotowania, Przepis::Trudnosc
     this->trudnosc = trudnosc;
     this->ulubione = ulubione;
     this->instrukcja = instrukcja;
+}
+
+void Przepis::insertToDb(QSqlQuery query)
+{
+    QString q = "INSERT INTO przepis (nazwa, czas_przygotowania, trudnosc, ulubione, instrukcja) ";
+    q = q + "VALUES (:naz, :cza, :tru, :ul, :inst)";
+    query.prepare(q);
+    query.bindValue(":naz", this->nazwa);
+    query.bindValue(":cza", this->czasPrzygotowania);
+    query.bindValue(":tru", (int)this->trudnosc);
+    query.bindValue(":ul", (int)this->ulubione);
+    query.bindValue(":inst", this->instrukcja);
+    query.exec();
+
+    query.prepare("SELECT seq FROM sqlite_sequences WHERE name=:prz");
+    query.bindValue(":prze", "przepis");
+    query.exec();
+
+    if(query.next())
+    {
+        this->id = query.value(0).itInt();
+    }
+
+    for(int i = 0; i < this->skladniki.count(); ++i)
+        skladniki.at(i).insertToDb(query,this->id);
 }
 
 QString Przepis::getNazwa() const
@@ -64,3 +90,13 @@ void Przepis::setInstrukcja(const QString &value)
 {
     instrukcja = value;
 }
+QList<PrzepisSkladnik> Przepis::getSkladniki() const
+{
+    return skladniki;
+}
+
+void Przepis::setSkladniki(const QList<PrzepisSkladnik> &value)
+{
+    skladniki = value;
+}
+

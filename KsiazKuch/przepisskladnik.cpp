@@ -32,5 +32,3 @@ void PrzepisSkladnik::setLiczba(int value)
 {
     liczba = value;
 }
-
-

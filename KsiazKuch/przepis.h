@@ -3,7 +3,9 @@
 
 #include <QString>
 #include <QList>
+#include <QSqlQuery>
 #include "przepisskladnik.h"
+#include "skladnik.h"
 
 class Przepis
 {
@@ -18,6 +20,9 @@ public:
 
     Przepis();
     Przepis(int id ,QString nazwa, int czasPrzygotowania, Trudnosc trudnosc, bool ulubione, QString instrukcja);
+    Przepis(int id, QSqlQuery query);
+
+    void insertToDb(QSqlQuery query);
 
     QString getNazwa() const;
     void setNazwa(const QString &value);
@@ -34,6 +39,9 @@ public:
     QString getInstrukcja() const;
     void setInstrukcja(const QString &value);
 
+    QList<PrzepisSkladnik> getSkladniki() const;
+    void setSkladniki(const QList<PrzepisSkladnik> &value);
+
 private:
     int id;
     QString nazwa;
@@ -41,6 +49,7 @@ private:
     Trudnosc trudnosc;
     bool ulubione;
     QString instrukcja;
+    QList<PrzepisSkladnik> skladniki;
 };
 
 #endif // PRZEPIS_H
