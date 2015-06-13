@@ -5,15 +5,12 @@
 #include "showprzepisydialog.h"
 #include "showskladnikidialog.h"
 #include <QDebug>
-#include <QtSql/QSqlDatabase>
-#include <QtSql/QSql>
-#include <QtSql/QSqlQuery>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE","cookbook");
+    db = QSqlDatabase::addDatabase("QSQLITE","cookbook");
     db.setDatabaseName("../DB/cookbook.db");
     if(!db.open())
         qDebug("Not working");
@@ -30,6 +27,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
+    db.close();
     delete ui;
 }
 
