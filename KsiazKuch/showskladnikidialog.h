@@ -17,6 +17,9 @@ public:
     explicit ShowSkladnikiDialog(QWidget *parent = 0);
     ~ShowSkladnikiDialog();
 
+private slots:
+    void on_listWidget_itemSelectionChanged();
+
 private:
     Ui::ShowSkladnikiDialog *ui;
     QList<Skladnik> skladniks;
