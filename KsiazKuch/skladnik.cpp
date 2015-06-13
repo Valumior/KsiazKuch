@@ -116,8 +116,8 @@ void Skladnik::setWartosciOdzywcze(const WartosciOdzywcze &value)
 {
     wartosciOdzywcze = value;
 }
+
 int Skladnik::getId() const
 {
     return id;
 }
-

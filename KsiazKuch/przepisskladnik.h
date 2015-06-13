@@ -11,6 +11,7 @@ public:
     PrzepisSkladnik(int count, Skladnik &skladnik);
 
     void insertToDb(QSqlQuery query, int przepisId);
+    static QList<PrzepisSkladnik> getObjects(QSqlQuery query, int przepisId);
 
     int getLiczba() const;
     void setLiczba(int value);
