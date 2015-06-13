@@ -2,6 +2,8 @@
 #define PRZEPIS_H
 
 #include <QString>
+#include <QList>
+#include "przepisskladnik.h"
 
 class Przepis
 {
