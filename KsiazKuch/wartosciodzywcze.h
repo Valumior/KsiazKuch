@@ -1,6 +1,7 @@
 #ifndef WARTOSCIODZYWCZE_H
 #define WARTOSCIODZYWCZE_H
 
+#include <QSqlQuery>
 
 class WartosciOdzywcze
 {
@@ -8,6 +9,9 @@ public:
     WartosciOdzywcze();
     WartosciOdzywcze(int kalorie, int tluszczeCalkowite, int tluszczeNasycone, int tluszczeNienasycone, int cholesterol,
                      int sod, int weglowodany, int cukry, int bialka);
+    WartosciOdzywcze(int id, QSqlQuery query);
+
+    void insertToDb(QSqlQuery query);
 
     int getKalorie() const;
     void setKalorie(int value);
