@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
         qDebug("Not working");
     else
         qDebug("Working");
+    db.close();
 
     ui->setupUi(this);
 
@@ -27,7 +28,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
-    db.close();
+    if(db.open())
+        db.close();
     delete ui;
 }
 

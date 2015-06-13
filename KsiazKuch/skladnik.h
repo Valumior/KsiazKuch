@@ -10,9 +10,9 @@ class Skladnik
 public:
     enum Miara: unsigned char
     {
-        Sztuki = 0,
-        Mililitry = 1,
-        Gramy = 2
+        Mililitry = 0,
+        Gramy = 1,
+        Sztuki = 2
     };
 
     Skladnik();

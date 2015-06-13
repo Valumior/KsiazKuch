@@ -39,7 +39,7 @@
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QLabel" name="label_3">
+     <widget class="QLabel" name="wartosciOdzywczeLabel">
       <property name="minimumSize">
        <size>
         <width>0</width>
@@ -53,7 +53,7 @@
        </size>
       </property>
       <property name="text">
-       <string>Wartości odżywcze</string>
+       <string>Wartości odżywcze dla 100 ml</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -123,7 +123,7 @@
     <item row="0" column="0">
      <widget class="QLabel" name="alabel_4">
       <property name="text">
-       <string>Kalorie</string>
+       <string>Kalorie (cal)</string>
       </property>
      </widget>
     </item>
@@ -135,15 +135,21 @@
       <property name="buttonSymbols">
        <enum>QAbstractSpinBox::NoButtons</enum>
       </property>
+      <property name="minimum">
+       <number>0</number>
+      </property>
       <property name="maximum">
        <number>999999999</number>
+      </property>
+      <property name="value">
+       <number>0</number>
       </property>
      </widget>
     </item>
     <item row="1" column="0">
      <widget class="QLabel" name="alabel_5">
       <property name="text">
-       <string>Tłuszcze całkowite</string>
+       <string>Tłuszcze całkowite (mg)</string>
       </property>
      </widget>
     </item>
@@ -155,15 +161,21 @@
       <property name="buttonSymbols">
        <enum>QAbstractSpinBox::NoButtons</enum>
       </property>
+      <property name="minimum">
+       <number>0</number>
+      </property>
       <property name="maximum">
        <number>999999999</number>
+      </property>
+      <property name="value">
+       <number>0</number>
       </property>
      </widget>
     </item>
     <item row="2" column="0">
      <widget class="QLabel" name="alabel_6">
       <property name="text">
-       <string>   w tym tłuszcze nasycone</string>
+       <string>   w tym tłuszcze nasycone (mg)</string>
       </property>
      </widget>
     </item>
@@ -175,15 +187,21 @@
       <property name="buttonSymbols">
        <enum>QAbstractSpinBox::NoButtons</enum>
       </property>
+      <property name="minimum">
+       <number>0</number>
+      </property>
       <property name="maximum">
        <number>999999999</number>
+      </property>
+      <property name="value">
+       <number>0</number>
       </property>
      </widget>
     </item>
     <item row="3" column="0">
      <widget class="QLabel" name="alabel_7">
       <property name="text">
-       <string>   w tym tłuszcze nienasycone</string>
+       <string>   w tym tłuszcze nienasycone (mg)</string>
       </property>
      </widget>
     </item>
@@ -195,15 +213,21 @@
       <property name="buttonSymbols">
        <enum>QAbstractSpinBox::NoButtons</enum>
       </property>
+      <property name="minimum">
+       <number>0</number>
+      </property>
       <property name="maximum">
        <number>999999999</number>
+      </property>
+      <property name="value">
+       <number>0</number>
       </property>
      </widget>
     </item>
     <item row="4" column="0">
      <widget class="QLabel" name="alabel_8">
       <property name="text">
-       <string>Cholesterol</string>
+       <string>Cholesterol (mg)</string>
       </property>
      </widget>
     </item>
@@ -215,15 +239,21 @@
       <property name="buttonSymbols">
        <enum>QAbstractSpinBox::NoButtons</enum>
       </property>
+      <property name="minimum">
+       <number>0</number>
+      </property>
       <property name="maximum">
        <number>999999999</number>
+      </property>
+      <property name="value">
+       <number>0</number>
       </property>
      </widget>
     </item>
     <item row="5" column="0">
      <widget class="QLabel" name="alabel_9">
       <property name="text">
-       <string>Sód</string>
+       <string>Sód (mg)</string>
       </property>
      </widget>
     </item>
@@ -235,15 +265,21 @@
       <property name="buttonSymbols">
        <enum>QAbstractSpinBox::NoButtons</enum>
       </property>
+      <property name="minimum">
+       <number>0</number>
+      </property>
       <property name="maximum">
        <number>999999999</number>
+      </property>
+      <property name="value">
+       <number>0</number>
       </property>
      </widget>
     </item>
     <item row="6" column="0">
      <widget class="QLabel" name="alabel_10">
       <property name="text">
-       <string>Węglowodany</string>
+       <string>Węglowodany (mg)</string>
       </property>
      </widget>
     </item>
@@ -255,22 +291,28 @@
       <property name="buttonSymbols">
        <enum>QAbstractSpinBox::NoButtons</enum>
       </property>
+      <property name="minimum">
+       <number>0</number>
+      </property>
       <property name="maximum">
        <number>999999999</number>
+      </property>
+      <property name="value">
+       <number>0</number>
       </property>
      </widget>
     </item>
     <item row="7" column="0">
      <widget class="QLabel" name="alabel_11">
       <property name="text">
-       <string>   w tym błonnik</string>
+       <string>   w tym błonnik (mg)</string>
       </property>
      </widget>
     </item>
     <item row="8" column="0">
      <widget class="QLabel" name="alabel_12">
       <property name="text">
-       <string>   w tym cukry</string>
+       <string>   w tym cukry (mg)</string>
       </property>
      </widget>
     </item>
@@ -282,8 +324,14 @@
       <property name="buttonSymbols">
        <enum>QAbstractSpinBox::NoButtons</enum>
       </property>
+      <property name="minimum">
+       <number>0</number>
+      </property>
       <property name="maximum">
        <number>999999999</number>
+      </property>
+      <property name="value">
+       <number>0</number>
       </property>
      </widget>
     </item>
@@ -295,15 +343,21 @@
       <property name="buttonSymbols">
        <enum>QAbstractSpinBox::NoButtons</enum>
       </property>
+      <property name="minimum">
+       <number>0</number>
+      </property>
       <property name="maximum">
        <number>999999999</number>
+      </property>
+      <property name="value">
+       <number>0</number>
       </property>
      </widget>
     </item>
     <item row="9" column="0">
      <widget class="QLabel" name="alabel_13">
       <property name="text">
-       <string>Białka</string>
+       <string>Białka (mg)</string>
       </property>
      </widget>
     </item>
@@ -315,8 +369,14 @@
       <property name="buttonSymbols">
        <enum>QAbstractSpinBox::NoButtons</enum>
       </property>
+      <property name="minimum">
+       <number>0</number>
+      </property>
       <property name="maximum">
        <number>999999999</number>
+      </property>
+      <property name="value">
+       <number>0</number>
       </property>
      </widget>
     </item>
