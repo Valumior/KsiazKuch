@@ -51,9 +51,9 @@ QList<Przepis> Przepis::getObjects(QSqlQuery query, QString filter)
 
     while(query.next())
     {
-        Przepis prze = Przepis(query.value(0).toInt(), query.value(0).toString(), query.value(0).toInt(),
-                               Przepis::Trudnosc(query.value(0).toInt()), query.value(0).toBool(),
-                               query.value(0).toString());
+        Przepis prze = Przepis(query.value(0).toInt(), query.value(1).toString(), query.value(2).toInt(),
+                               Przepis::Trudnosc(query.value(3).toInt()), query.value(4).toBool(),
+                               query.value(5).toString());
         list.append(prze);
     }
 
