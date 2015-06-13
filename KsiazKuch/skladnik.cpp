@@ -68,7 +68,7 @@ QList<Skladnik> Skladnik::getObjects(QSqlQuery query, QString filter)
             "wartosci_odzywcze.tluszcze_nienasycone, wartosci_odzywcze.cholesterol, wartosci_odzywcze.sod, " +
             "wartosci_odzywcze.weglowodany, wartosci_odzywcze.blonnik, wartosci_odzywcze.cukry, wartosci_odzywcze.bialka " +
             "FROM skladnik NATURAL JOIN wartosci_odzywcze";
-    if(filter.trimmed().isEmpty())
+    if(!filter.trimmed().isEmpty())
         q = q + " WHERE skladnik.nazwa LIKE '%" + filter + "%'";
 
     query.exec(q);
