@@ -129,8 +129,14 @@
     </item>
     <item row="0" column="1">
      <widget class="QSpinBox" name="kalorieSpinBox">
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
       <property name="buttonSymbols">
        <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="maximum">
+       <number>999999999</number>
       </property>
      </widget>
     </item>
@@ -143,8 +149,14 @@
     </item>
     <item row="1" column="1">
      <widget class="QSpinBox" name="tluszczeCalkowiteSpinBox">
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
       <property name="buttonSymbols">
        <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="maximum">
+       <number>999999999</number>
       </property>
      </widget>
     </item>
@@ -157,8 +169,14 @@
     </item>
     <item row="2" column="1">
      <widget class="QSpinBox" name="tluszczeNasyconeSpinBox">
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
       <property name="buttonSymbols">
        <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="maximum">
+       <number>999999999</number>
       </property>
      </widget>
     </item>
@@ -171,8 +189,14 @@
     </item>
     <item row="3" column="1">
      <widget class="QSpinBox" name="tluszczeNienasyconeSpinBox">
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
       <property name="buttonSymbols">
        <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="maximum">
+       <number>999999999</number>
       </property>
      </widget>
     </item>
@@ -185,8 +209,14 @@
     </item>
     <item row="4" column="1">
      <widget class="QSpinBox" name="cholesterolSpinBox_5">
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
       <property name="buttonSymbols">
        <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="maximum">
+       <number>999999999</number>
       </property>
      </widget>
     </item>
@@ -199,8 +229,14 @@
     </item>
     <item row="5" column="1">
      <widget class="QSpinBox" name="sodSpinBox">
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
       <property name="buttonSymbols">
        <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="maximum">
+       <number>999999999</number>
       </property>
      </widget>
     </item>
@@ -213,8 +249,14 @@
     </item>
     <item row="6" column="1">
      <widget class="QSpinBox" name="weglowodanySpinBox">
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
       <property name="buttonSymbols">
        <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="maximum">
+       <number>999999999</number>
       </property>
      </widget>
     </item>
@@ -234,15 +276,27 @@
     </item>
     <item row="7" column="1">
      <widget class="QSpinBox" name="blonnikSpinBox">
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
       <property name="buttonSymbols">
        <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="maximum">
+       <number>999999999</number>
       </property>
      </widget>
     </item>
     <item row="8" column="1">
      <widget class="QSpinBox" name="cukrySpinBox">
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
       <property name="buttonSymbols">
        <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="maximum">
+       <number>999999999</number>
       </property>
      </widget>
     </item>
@@ -255,8 +309,14 @@
     </item>
     <item row="9" column="1">
      <widget class="QSpinBox" name="bialkaSpinBox">
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
       <property name="buttonSymbols">
        <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="maximum">
+       <number>999999999</number>
       </property>
      </widget>
     </item>
