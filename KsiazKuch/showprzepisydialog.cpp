@@ -15,11 +15,9 @@ ShowPrzepisyDialog::ShowPrzepisyDialog(QWidget *parent) :
     if(database.open())
     {
         QSqlQuery query(database);
-        przepiss = Przepis::getObjects(query, "");
-        foreach(Przepis przepis, przepiss) {
+        przepiss = Przepis::getObjects(query);
+        foreach(Przepis przepis, przepiss)
             this->ui->przepisyListWidget->addItem(przepis.getNazwa());
-            qDebug() << przepis.getSkladniki().count();
-        }
 
         database.close();
     }
