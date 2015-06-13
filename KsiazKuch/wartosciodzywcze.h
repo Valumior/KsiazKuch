@@ -40,6 +40,7 @@ public:
     void setBialka(int value);
 
 private:
+    int id;
     int kalorie;
     int tluszczeCalkowite;
     int tluszczeNasycone;

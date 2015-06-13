@@ -27,6 +27,7 @@ public:
     void setWartosciOdzywcze(const WartosciOdzywcze &value);
 
 private:
+    int id;
     QString nazwa;
     Miara miara;
     WartosciOdzywcze wartosciOdzywcze;

@@ -33,6 +33,7 @@ public:
     void setInstrukcja(const QString &value);
 
 private:
+    int id;
     QString nazwa;
     int czasPrzygotowania;
     Trudnosc trudnosc;
