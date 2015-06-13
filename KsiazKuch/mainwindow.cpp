@@ -1,9 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "addprzepiswindow.h"
-#include "addskladnikwindow.h"
-#include "showprzepiswindow.h"
-#include "showskladnikiwindow.h"
+#include "addprzepisdialog.h"
+#include "addskladnikdialog.h"
+#include "showprzepisydialog.h"
+#include "showskladnikidialog.h"
 #include <QDebug>
 #include <QtSql/QSqlDatabase>
 #include <QtSql/QSql>
@@ -38,24 +38,24 @@ void MainWindow::on_actionWyjscie_triggered()
 
 void MainWindow::showAddPrzepis()
 {
-    AddPrzepisWindow *addPrzepisWindow = new AddPrzepisWindow(this);
-    addPrzepisWindow->show();
+    AddPrzepisDialog *addPrzepisDialog = new AddPrzepisDialog(this);
+    addPrzepisDialog->show();
 }
 
 void MainWindow::showAddSkladnik()
 {
-    AddSkladnikWindow *addSkladnikWindow = new AddSkladnikWindow(this);
-    addSkladnikWindow->show();
+    AddSkladnikDialog *addSkladnikDialog = new AddSkladnikDialog(this);
+    addSkladnikDialog->show();
 }
 
 void MainWindow::showSeePrzepisy()
 {
-    ShowPrzepisWindow *showPrzepisWindow = new ShowPrzepisWindow(this);
-    showPrzepisWindow->show();
+    ShowPrzepisyDialog *showPrzepisyDialog = new ShowPrzepisyDialog(this);
+    showPrzepisyDialog->show();
 }
 
 void MainWindow::showSeeSkladniki()
 {
-    ShowSkladnikiWindow *showSeeSkladnik = new ShowSkladnikiWindow(this);
-    showSeeSkladnik->show();
+    ShowSkladnikiDialog *showSkladnikiDialog = new ShowSkladnikiDialog(this);
+    showSkladnikiDialog->show();
 }
