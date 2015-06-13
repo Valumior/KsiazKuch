@@ -60,3 +60,12 @@ void PrzepisSkladnik::setLiczba(int value)
 {
     liczba = value;
 }
+
+Skladnik PrzepisSkladnik::getSkladnik() const
+{
+    return skladnik;
+}
+
+void PrzepisSkladnik::setSkladnik(Skladnik &value) {
+    skladnik = value;
+}
