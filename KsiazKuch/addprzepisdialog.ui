@@ -92,6 +92,9 @@
         <property name="buttonSymbols">
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
+        <property name="minimum">
+         <number>1</number>
+        </property>
         <property name="maximum">
          <number>999999999</number>
         </property>
@@ -134,21 +137,18 @@
          </size>
         </property>
         <property name="text">
-         <string>Dodaj składnik</string>
+         <string>Dodaj / usuń</string>
         </property>
        </widget>
       </item>
      </layout>
     </item>
     <item>
-     <widget class="QListView" name="skladnikiListView">
-      <property name="gridSize">
-       <size>
-        <width>0</width>
-        <height>0</height>
-       </size>
-      </property>
-     </widget>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QListWidget" name="skladnikiListWidget"/>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>

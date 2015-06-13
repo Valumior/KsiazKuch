@@ -25,6 +25,8 @@ void AddSkladnikDialog::on_pushButton_clicked()
         return;
     }
 
+    //- y u no constructor
+    //= dunno, gr8 b8 m8 i r8 8/8
     WartosciOdzywcze wartosciOdzywcze;
     wartosciOdzywcze.setBialka(this->ui->bialkaSpinBox->value());
     wartosciOdzywcze.setBlonnik(this->ui->blonnikSpinBox->value());
