@@ -23,6 +23,7 @@ public:
     Przepis(int id, QSqlQuery query);
 
     void insertToDb(QSqlQuery query);
+    static QList<Przepis> getObjects(QSqlQuery query, QString filter);
 
     QString getNazwa() const;
     void setNazwa(const QString &value);
@@ -41,6 +42,8 @@ public:
 
     QList<PrzepisSkladnik> getSkladniki() const;
     void setSkladniki(const QList<PrzepisSkladnik> &value);
+
+    int getId() const;
 
 private:
     int id;

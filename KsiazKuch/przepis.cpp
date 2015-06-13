@@ -41,6 +41,28 @@ void Przepis::insertToDb(QSqlQuery query)
         this->skladniki[i].insertToDb(query, przepId);
 }
 
+QList<Przepis> Przepis::getObjects(QSqlQuery query, QString filter)
+{
+    QList<Przepis> list = QList<Przepis>();
+    QString q = "SELECT id, nazwa, czas_przygotowania, trudnosc, ulubione, instrukcja FROM przepis";
+    if(filter.trimmed().isEmpty())
+        q = q + "WHERE nazwa LIKE '%" + filter + "%'";
+    query.exec(q);
+
+    while(query.next())
+    {
+        Przepis prze = Przepis(query.value(0).toInt(), query.value(0).toString(), query.value(0).toInt(),
+                               Przepis::Trudnosc(query.value(0).toInt()), query.value(0).toBool(),
+                               query.value(0).toString());
+        list.append(prze);
+    }
+
+    for(int i = 0; i < list.count(); ++i)
+        list[i].setSkladniki(PrzepisSkladnik::getObjects(query, list[i].getId()));
+
+    return list;
+}
+
 QString Przepis::getNazwa() const
 {
     return nazwa;
@@ -98,5 +120,10 @@ QList<PrzepisSkladnik> Przepis::getSkladniki() const
 void Przepis::setSkladniki(const QList<PrzepisSkladnik> &value)
 {
     skladniki = value;
+}
+
+int Przepis::getId() const
+{
+    return id;
 }
 
