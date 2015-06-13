@@ -16,7 +16,7 @@ public:
     };
 
     Skladnik();
-    Skladnik(QString nazwa, Miara miara, WartosciOdzywcze wartosciOdzywcze);
+    Skladnik(int id ,QString nazwa, Miara miara, WartosciOdzywcze wartosciOdzywcze);
     Skladnik(int id, QSqlQuery query);
 
     void insertToDb(QSqlQuery query);
@@ -29,6 +29,8 @@ public:
 
     WartosciOdzywcze getWartosciOdzywcze() const;
     void setWartosciOdzywcze(const WartosciOdzywcze &value);
+
+    int getId() const;
 
 private:
     int id;

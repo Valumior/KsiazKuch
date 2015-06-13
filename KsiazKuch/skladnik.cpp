@@ -6,8 +6,9 @@ Skladnik::Skladnik()
 
 }
 
-Skladnik::Skladnik(QString nazwa, Skladnik::Miara miara, WartosciOdzywcze wartosciOdzywcze)
+Skladnik::Skladnik(int id ,QString nazwa, Skladnik::Miara miara, WartosciOdzywcze wartosciOdzywcze)
 {
+    this->id = id;
     this->nazwa = nazwa;
     this->miara = miara;
     this->wartosciOdzywcze = wartosciOdzywcze;
@@ -90,3 +91,8 @@ void Skladnik::setWartosciOdzywcze(const WartosciOdzywcze &value)
 {
     wartosciOdzywcze = value;
 }
+int Skladnik::getId() const
+{
+    return id;
+}
+

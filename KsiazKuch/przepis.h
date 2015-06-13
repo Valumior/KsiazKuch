@@ -15,7 +15,7 @@ public:
     };
 
     Przepis();
-    Przepis(QString nazwa, int czasPrzygotowania, Trudnosc trudnosc, bool ulubione, QString instrukcja);
+    Przepis(int id ,QString nazwa, int czasPrzygotowania, Trudnosc trudnosc, bool ulubione, QString instrukcja);
 
     QString getNazwa() const;
     void setNazwa(const QString &value);
