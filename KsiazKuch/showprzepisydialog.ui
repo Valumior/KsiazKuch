@@ -28,22 +28,6 @@
   <property name="windowTitle">
    <string>Twoje przepisy</string>
   </property>
-  <widget class="QListView" name="przepisyListView">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>221</width>
-     <height>300</height>
-    </rect>
-   </property>
-   <property name="minimumSize">
-    <size>
-     <width>220</width>
-     <height>300</height>
-    </size>
-   </property>
-  </widget>
   <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
     <rect>
@@ -397,6 +381,28 @@
      </layout>
     </item>
    </layout>
+  </widget>
+  <widget class="QListWidget" name="przepisyListWidget">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>220</width>
+     <height>300</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>220</width>
+     <height>300</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>220</width>
+     <height>300</height>
+    </size>
+   </property>
   </widget>
  </widget>
  <resources/>

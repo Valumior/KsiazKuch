@@ -41,4 +41,18 @@ void ShowSkladnikiDialog::on_listWidget_itemSelectionChanged()
     this->ui->skladnikiCukryLabel->setText(QString::number(skladnik.getWartosciOdzywcze().getCukry()));
     this->ui->skladnikiBlonnikLabel->setText(QString::number(skladnik.getWartosciOdzywcze().getBlonnik()));
     this->ui->skladnikiBialkaLabel->setText(QString::number(skladnik.getWartosciOdzywcze().getBialka()));
+
+    switch(skladnik.getMiara()) {
+        case 0:
+            this->ui->skladnikWartosciOdzywczeLabel->setText("Wartości odżywcze dla 100 ml");
+            break;
+        case 1:
+            this->ui->skladnikWartosciOdzywczeLabel->setText("Wartości odżywcze dla 100 g");
+            break;
+        case 2:
+            this->ui->skladnikWartosciOdzywczeLabel->setText("Wartości odżywcze dla 1 sztuki");
+            break;
+        default:
+            break;
+    }
 }
