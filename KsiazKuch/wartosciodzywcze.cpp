@@ -7,7 +7,7 @@ WartosciOdzywcze::WartosciOdzywcze()
 }
 
 WartosciOdzywcze::WartosciOdzywcze(int kalorie, int tluszczeCalkowite, int tluszczeNasycone, int tluszczeNienasycone,
-                                   int cholesterol, int sod, int weglowodany, int cukry, int bialka)
+                                   int cholesterol, int sod, int weglowodany, int blonnik, int cukry, int bialka)
 {
     this->kalorie = kalorie;
     this->tluszczeCalkowite = tluszczeCalkowite;
@@ -16,6 +16,7 @@ WartosciOdzywcze::WartosciOdzywcze(int kalorie, int tluszczeCalkowite, int tlusz
     this->cholesterol = cholesterol;
     this->sod = sod;
     this->weglowodany = weglowodany;
+    this->blonnik = blonnik;
     this->cukry = cukry;
     this->bialka = bialka;
 }
@@ -24,7 +25,7 @@ WartosciOdzywcze::WartosciOdzywcze(int id, QSqlQuery query)
 {
     this->id = id;
     QString q = "SELECT kalorie, tluszcze_calkowite, tluszcze_nasycone, tluszcze_nienasycone, cholesterol, ";
-    q = q + "sod, weglowodany, cukry, bialka FROM wartosci_odzywcze WHERE id=:id";
+    q = q + "sod, weglowodany, blonnik, cukry, bialka FROM wartosci_odzywcze WHERE id=:id";
     query.prepare(q);
     query.bindValue(":id", id);
     query.exec();
@@ -38,8 +39,9 @@ WartosciOdzywcze::WartosciOdzywcze(int id, QSqlQuery query)
         this->cholesterol = query.value(4).toInt();
         this->sod = query.value(5).toInt();
         this->weglowodany = query.value(6).toInt();
-        this->cukry = query.value(7).toInt();
-        this->bialka = query.value(8).toInt();
+        this->blonnik = query.value(7).toInt();
+        this->cukry = query.value(9).toInt();
+        this->bialka = query.value(10).toInt();
     }
     else
         qDebug("Bad ID");
@@ -50,7 +52,7 @@ void WartosciOdzywcze::insertToDb(QSqlQuery query)
     QString q = "INSERT INTO wartosci_odzywcze ";
     q = q + "(kalorie, tluszcze_calkowite, tluszcze_nasycone, tluszcze_nienasycone, " +
             "cholesterol, sod, weglowodany, cukry, bialka) " +
-            "VALUES (:kal, :tcal, :tnas, :tnnas, :chol, :sod, :wegl, :cuk, :bia)";
+            "VALUES (:kal, :tcal, :tnas, :tnnas, :chol, :sod, :wegl, :blo, :cuk, :bia)";
     query.prepare(q);
     query.bindValue(":kal", this->kalorie);
     query.bindValue(":tcal", this->tluszczeCalkowite);
@@ -59,6 +61,7 @@ void WartosciOdzywcze::insertToDb(QSqlQuery query)
     query.bindValue(":chol", this->cholesterol);
     query.bindValue(":sod", this->sod);
     query.bindValue(":wegl", this->weglowodany);
+    query.bindValue(":blo", this->blonnik);
     query.bindValue(":cuk", this->cukry);
     query.bindValue(":bia", this->bialka);
     query.exec();
