@@ -70,7 +70,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="seeSkaldnikiButton_3">
+      <widget class="QPushButton" name="seeSkladnikiButton">
        <property name="text">
         <string>Przeglądaj składniki</string>
        </property>

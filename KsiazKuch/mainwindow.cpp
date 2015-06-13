@@ -24,6 +24,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->addPrzepisButton, SIGNAL(clicked()), this, SLOT(showAddPrzepis()));
     connect(ui->addSkladnikButton, SIGNAL(clicked()), this, SLOT(showAddSkladnik()));
+    connect(ui->seePrzepisyButton, SIGNAL(clicked()), this, SLOT(showSeePrzepisy()));
+    connect(ui->seeSkladnikiButton, SIGNAL(clicked()), this, SLOT(showSeeSkladniki()));
 }
 
 MainWindow::~MainWindow()
