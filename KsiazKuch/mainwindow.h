@@ -17,6 +17,7 @@ public:
 
 private slots:
     void on_actionWyjscie_triggered();
+    void showAddPrzepis();
 
 private:
     Ui::MainWindow *ui;
