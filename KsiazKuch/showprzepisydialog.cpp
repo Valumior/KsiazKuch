@@ -56,29 +56,16 @@ void ShowPrzepisyDialog::loadPrzepisData(const Przepis &przepis) {
             break;
     }
 
-    //HERE!
-    QSqlDatabase database = QSqlDatabase::addDatabase("QSQLITE","cookbook");
-    database.setDatabaseName("../DB/cookbook.db");
-
-    QList<PrzepisSkladnik> skladniks;
-    if(database.open())
-    {
-        QSqlQuery query(database);
-        skladniks = PrzepisSkladnik::getObjects(query, przepis.getId());
-        database.close();
-    }
-
     double kalorieTotal = 0, tluszcze_calkowiteTotal = 0, tluszcze_nasyconeTotal = 0, tluszcze_nienasyconeTotal = 0,
             cholesterolTotal = 0, sodTotal = 0, weglowodanyTotal = 0, blonnikTotal = 0, cukryTotal = 0, bialkaTotal = 0;
 
-    foreach(PrzepisSkladnik skladnik, przepis.getSkladniki() /*skladniks*/) {
+    foreach(PrzepisSkladnik skladnik, przepis.getSkladniki()) {
         double ratio = 1;
         if(skladnik.getSkladnik().getMiara() == 0 || skladnik.getSkladnik().getMiara() == 1) {
             ratio = 100;
         }
 
         ratio = skladnik.getLiczba() / ratio;
-        qDebug() << ratio;
 
         WartosciOdzywcze wartosciOdzywcze = skladnik.getSkladnik().getWartosciOdzywcze();
         kalorieTotal += wartosciOdzywcze.getKalorie() * ratio;
