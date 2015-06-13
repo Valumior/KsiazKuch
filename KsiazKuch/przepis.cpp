@@ -46,7 +46,7 @@ QList<Przepis> Przepis::getObjects(QSqlQuery query, QString filter)
     QList<Przepis> list = QList<Przepis>();
     QString q = "SELECT id, nazwa, czas_przygotowania, trudnosc, ulubione, instrukcja FROM przepis";
     if(!filter.trimmed().isEmpty())
-        q = q + "WHERE nazwa LIKE '%" + filter + "%'";
+        q = q + " WHERE nazwa LIKE '%" + filter + "%'";
     query.exec(q);
 
     while(query.next())
