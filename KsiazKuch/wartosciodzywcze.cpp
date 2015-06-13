@@ -1,4 +1,5 @@
 #include "wartosciodzywcze.h"
+#include <QVariant>
 
 WartosciOdzywcze::WartosciOdzywcze()
 {
@@ -22,11 +23,10 @@ WartosciOdzywcze::WartosciOdzywcze(int kalorie, int tluszczeCalkowite, int tlusz
 WartosciOdzywcze::WartosciOdzywcze(int id, QSqlQuery query)
 {
     this->id = id;
-    QString q = "SELECT kalorie, tluszcze_calkowite, tluszcze_nasycone, tluszcze_nienasycone, cholesterol, " +
-            "sod, weglowodany, cukry, bialka " +
-            "FROM wartosci_odzywcze WHERE id=:id";
+    QString q = "SELECT kalorie, tluszcze_calkowite, tluszcze_nasycone, tluszcze_nienasycone, cholesterol, ";
+    q = q + "sod, weglowodany, cukry, bialka FROM wartosci_odzywcze WHERE id=:id";
     query.prepare(q);
-    query.bindValue(":id", this->id);
+    query.bindValue(":id", id);
     query.exec();
 
     if(query.next())
@@ -43,6 +43,25 @@ WartosciOdzywcze::WartosciOdzywcze(int id, QSqlQuery query)
     }
     else
         qDebug("Bad ID");
+}
+
+void WartosciOdzywcze::insertToDb(QSqlQuery query)
+{
+    QString q = "INSERT INTO wartosci_odzywcze ";
+    q = q + "(kalorie, tluszcze_calkowite, tluszcze_nasycone, tluszcze_nienasycone, " +
+            "cholesterol, sod, weglowodany, cukry, bialka) " +
+            "VALUES (:kal, :tcal, :tnas, :tnnas, :chol, :sod, :wegl, :cuk, :bia)";
+    query.prepare(q);
+    query.bindValue(":kal", this->kalorie);
+    query.bindValue(":tcal", this->tluszczeCalkowite);
+    query.bindValue(":tnas", this->tluszczeNasycone);
+    query.bindValue(":tnnas", this->tluszczeNienasycone);
+    query.bindValue(":chol", this->cholesterol);
+    query.bindValue(":sod", this->sod);
+    query.bindValue(":wegl", this->weglowodany);
+    query.bindValue(":cuk", this->cukry);
+    query.bindValue(":bia", this->bialka);
+    query.exec();
 }
 
 int WartosciOdzywcze::getKalorie() const
@@ -143,23 +162,4 @@ int WartosciOdzywcze::getBialka() const
 void WartosciOdzywcze::setBialka(int value)
 {
     bialka = value;
-}
-
-void WartosciOdzywcze::insertToDb(QSqlQuery query)
-{
-    QString q = "INSERT INTO wartosci_odzywcze " +
-            "(kalorie, tluszcze_calkowite, tluszcze_nasycone, tluszcze_nienasycone, " +
-            "cholesterol, sod, weglowodany, cukry, bialka) " +
-            "VALUES (:kal, :tcal, :tnas, :tnnas, :chol, :sod, :wegl, :cuk, :bia)";
-    query.prepare(q);
-    query.bindValue(":kal", this->kalorie);
-    query.bindValue(":tcal", this->tluszczeCalkowite);
-    query.bindValue(":tnas", this->tluszczeNasycone);
-    query.bindValue(":tnnas", this->tluszczeNienasycone);
-    query.bindValue(":chol", this->cholesterol);
-    query.bindValue(":sod", this->sod);
-    query.bindValue(":wegl", this->weglowodany);
-    query.bindValue(":cuk", this->cukry);
-    query.bindValue(":bia", this->bialka);
-    query.exec();
 }
