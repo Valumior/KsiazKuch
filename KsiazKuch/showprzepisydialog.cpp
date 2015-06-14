@@ -65,6 +65,16 @@ void ShowPrzepisyDialog::loadPrzepisData(const Przepis &przepis) {
             ratio = 100;
         }
 
+        if(skladnik.getSkladnik().getMiara() == Skladnik::Mililitry)
+            this->ui->przepisSkladnikiListWidget->addItem(skladnik.getSkladnik().getNazwa() + " "
+                                                          + QString::number(skladnik.getLiczba()) + "ml");
+        else if(skladnik.getSkladnik().getMiara() == Skladnik::Gramy)
+            this->ui->przepisSkladnikiListWidget->addItem(skladnik.getSkladnik().getNazwa() + " "
+                                                          + QString::number(skladnik.getLiczba()) + "g");
+        else
+            this->ui->przepisSkladnikiListWidget->addItem(skladnik.getSkladnik().getNazwa() + " "
+                                                          + QString::number(skladnik.getLiczba()) + " szt.");
+
         ratio = skladnik.getLiczba() / ratio;
 
         WartosciOdzywcze wartosciOdzywcze = skladnik.getSkladnik().getWartosciOdzywcze();
