@@ -61,7 +61,7 @@ void ShowPrzepisyDialog::loadPrzepisData(const Przepis &przepis) {
 
     foreach(PrzepisSkladnik skladnik, przepis.getSkladniki()) {
         double ratio = 1;
-        if(skladnik.getSkladnik().getMiara() == 0 || skladnik.getSkladnik().getMiara() == 1) {
+        if(skladnik.getSkladnik().getMiara() == Skladnik::Mililitry || skladnik.getSkladnik().getMiara() == Skladnik::Gramy) {
             ratio = 100;
         }
 
