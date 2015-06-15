@@ -12,7 +12,7 @@ public:
     WartosciOdzywcze(int id, QSqlQuery query);
 
     void insertToDb(QSqlQuery query);
-    void updateDb(QSqlQuery query, int id=this->id);
+    void updateDb(QSqlQuery query, int id);
 
     int getKalorie() const;
     void setKalorie(int value);

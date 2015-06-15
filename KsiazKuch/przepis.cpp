@@ -57,7 +57,7 @@ void Przepis::updateDb(QSqlQuery query)
     query.exec();
 
     for(int i = 0; i < this->skladniki.count(); ++i)
-        this->skladniki[i].insertToDb(query, przepId);
+        this->skladniki[i].insertToDb(query, this->id);
 }
 
 QList<Przepis> Przepis::getObjects(QSqlQuery query, bool fav, QString filter)
