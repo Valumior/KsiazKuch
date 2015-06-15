@@ -26,7 +26,8 @@ SOURCES += main.cpp\
     showprzepisydialog.cpp \
     showskladnikidialog.cpp \
     przepisskladnik.cpp \
-    editskladnikdialog.cpp
+    editskladnikdialog.cpp \
+    editprzepisydialog.cpp
 
 HEADERS  += mainwindow.h \
     przepis.h \
@@ -37,11 +38,13 @@ HEADERS  += mainwindow.h \
     showprzepisydialog.h \
     showskladnikidialog.h \
     przepisskladnik.h \
-    editskladnikdialog.h
+    editskladnikdialog.h \
+    editprzepisydialog.h
 
 FORMS    += mainwindow.ui \
     addprzepisdialog.ui \
     addskladnikdialog.ui \
     showprzepisydialog.ui \
     showskladnikidialog.ui \
-    editskladnikdialog.ui
+    editskladnikdialog.ui \
+    editprzepisydialog.ui

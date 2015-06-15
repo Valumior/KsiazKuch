@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "skladnik.h"
+#include "przepis.h"
 
 namespace Ui {
 class AddPrzepisDialog;
@@ -14,6 +15,7 @@ class AddPrzepisDialog : public QDialog
 
 public:
     explicit AddPrzepisDialog(QWidget *parent = 0);
+    explicit AddPrzepisDialog(Przepis przepis, QWidget *parent = 0);
     ~AddPrzepisDialog();
 
 private slots:
@@ -26,6 +28,8 @@ private slots:
 private:
     Ui::AddPrzepisDialog *ui;
     QList<Skladnik> skladniks;
+    Przepis editedPrzepis;
+    bool isPrzepisBeingEdited;
 
     void displayDialog(QString message);
 };

@@ -32,7 +32,7 @@
       <x>0</x>
       <y>0</y>
       <width>160</width>
-      <height>141</height>
+      <height>170</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -68,6 +68,13 @@
       <widget class="QPushButton" name="editSkladnikiButton">
        <property name="text">
         <string>Edytuj składniki</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton">
+       <property name="text">
+        <string>Edytuj przepisy</string>
        </property>
       </widget>
      </item>

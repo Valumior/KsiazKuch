@@ -5,6 +5,7 @@
 #include "showprzepisydialog.h"
 #include "showskladnikidialog.h"
 #include "editskladnikdialog.h"
+#include "editprzepisydialog.h"
 #include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -67,4 +68,10 @@ void MainWindow::on_editSkladnikiButton_clicked()
 {
     editskladnikdialog *editSkladnikiDialog = new editskladnikdialog(this);
     editSkladnikiDialog->show();
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    EditPrzepisyDialog *editPrzepisyDialog = new EditPrzepisyDialog(this);
+    editPrzepisyDialog->show();
 }
