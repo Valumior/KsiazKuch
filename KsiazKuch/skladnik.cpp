@@ -39,7 +39,7 @@ Skladnik::Skladnik(int id, QSqlQuery query)
 
 void Skladnik::insertToDb(QSqlQuery query)
 {
-    wartosciOdzywcze.insertToDb(query);
+    this->wartosciOdzywcze.insertToDb(query);
     query.exec("SELECT last_insert_rowid()");
 
     int wartOdzId;
@@ -57,6 +57,21 @@ void Skladnik::insertToDb(QSqlQuery query)
     query.bindValue(":naz", this->nazwa);
     query.bindValue(":mia",(int)this->miara);
     query.bindValue(":wart", wartOdzId);
+    query.exec();
+}
+
+void Skladnik::updateDb(QSqlQuery query)
+{
+    query.exec("SELECT wartosci_odzywcze FROM skladnik WHERE id=" + QString::number(this->id));
+    if(query.next())
+        this->wartosciOdzywcze.updateDb(query, query.value(0).toInt());
+
+    QString q = "UPDATE skladnik  SET nazwa=:naz, miara=:mia ";
+    q = q + "WHERE id=:id";
+    query.prepare(q);
+    query.bindValue(":naz", this->nazwa);
+    query.bindValue(":mia",(int)this->miara);
+    query.bindValue(":id", this->id);
     query.exec();
 }
 

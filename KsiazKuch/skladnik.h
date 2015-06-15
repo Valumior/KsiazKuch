@@ -21,6 +21,7 @@ public:
     Skladnik(int id, QSqlQuery query);
 
     void insertToDb(QSqlQuery query);
+    void updateDb(QSqlQuery query);
     static QList<Skladnik> getObjects(QSqlQuery query, QString filter="");
 
     QString getNazwa() const;

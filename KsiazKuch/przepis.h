@@ -23,7 +23,8 @@ public:
     Przepis(int id, QSqlQuery query);
 
     void insertToDb(QSqlQuery query);
-    static QList<Przepis> getObjects(QSqlQuery query, QString filter = "");
+    void updateDb(QSqlQuery query);
+    static QList<Przepis> getObjects(QSqlQuery query, bool fav = false, QString filter = "");
 
     QString getNazwa() const;
     void setNazwa(const QString &value);

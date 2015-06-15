@@ -41,12 +41,38 @@ void Przepis::insertToDb(QSqlQuery query)
         this->skladniki[i].insertToDb(query, przepId);
 }
 
-QList<Przepis> Przepis::getObjects(QSqlQuery query, QString filter)
+void Przepis::updateDb(QSqlQuery query)
+{
+    query.exec("DELETE FORM skladniki_przepis WHERE przepis=" + QString::number(this->id));
+
+    QString q = "UPDATE przepis SET nazwa=:naz, czas_przygotowania=:cza, trudnosc=:tru, ";
+    q = q + "ulubione=:ul, instrukcja=:inst WHERE id=:id";
+    query.prepare(q);
+    query.bindValue(":naz", this->nazwa);
+    query.bindValue(":cza", this->czasPrzygotowania);
+    query.bindValue(":tru", (int)this->trudnosc);
+    query.bindValue(":ul", (int)this->ulubione);
+    query.bindValue(":inst", this->instrukcja);
+    query.bindValue(":id", this->id);
+    query.exec();
+
+    for(int i = 0; i < this->skladniki.count(); ++i)
+        this->skladniki[i].insertToDb(query, przepId);
+}
+
+QList<Przepis> Przepis::getObjects(QSqlQuery query, bool fav, QString filter)
 {
     QList<Przepis> list = QList<Przepis>();
     QString q = "SELECT id, nazwa, czas_przygotowania, trudnosc, ulubione, instrukcja FROM przepis";
-    if(!filter.trimmed().isEmpty())
-        q = q + " WHERE nazwa LIKE '%" + filter + "%'";
+    if(!filter.trimmed().isEmpty() || fav)
+    {
+        q = q + " WHERE ";
+        if(!filter.trimmed().isEmpty())
+            q = q + "nazwa LIKE '%" + filter + "%' ";
+        if(fav)
+            q = q + "ulubione=1 ";
+    }
+
     query.exec(q);
 
     while(query.next())
