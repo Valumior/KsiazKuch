@@ -41,12 +41,19 @@ void Przepis::insertToDb(QSqlQuery query)
         this->skladniki[i].insertToDb(query, przepId);
 }
 
-QList<Przepis> Przepis::getObjects(QSqlQuery query, QString filter)
+QList<Przepis> Przepis::getObjects(QSqlQuery query, bool fav, QString filter)
 {
     QList<Przepis> list = QList<Przepis>();
     QString q = "SELECT id, nazwa, czas_przygotowania, trudnosc, ulubione, instrukcja FROM przepis";
-    if(!filter.trimmed().isEmpty())
-        q = q + " WHERE nazwa LIKE '%" + filter + "%'";
+    if(!filter.trimmed().isEmpty() || fav)
+    {
+        q = q + " WHERE ";
+        if(!filter.trimmed().isEmpty())
+            q = q + "nazwa LIKE '%" + filter + "%' ";
+        if(fav)
+            q = q + "ulubione=1 ";
+    }
+
     query.exec(q);
 
     while(query.next())
