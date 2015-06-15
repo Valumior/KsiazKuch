@@ -9,19 +9,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>950</width>
+    <width>1100</width>
     <height>320</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>950</width>
+    <width>1100</width>
     <height>320</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>950</width>
+    <width>1100</width>
     <height>320</height>
    </size>
   </property>
@@ -33,7 +33,7 @@
     <rect>
      <x>240</x>
      <y>10</y>
-     <width>211</width>
+     <width>271</width>
      <height>298</height>
     </rect>
    </property>
@@ -151,9 +151,9 @@
   <widget class="QTextEdit" name="przepisyPrzyrzadzenieTextEdit">
    <property name="geometry">
     <rect>
-     <x>690</x>
+     <x>809</x>
      <y>10</y>
-     <width>250</width>
+     <width>281</width>
      <height>301</height>
     </rect>
    </property>
@@ -170,9 +170,9 @@
   <widget class="QWidget" name="verticalLayoutWidget_2">
    <property name="geometry">
     <rect>
-     <x>460</x>
+     <x>520</x>
      <y>10</y>
-     <width>234</width>
+     <width>281</width>
      <height>301</height>
     </rect>
    </property>
@@ -397,6 +397,11 @@
     </size>
    </property>
   </widget>
+  <zorder>verticalLayoutWidget</zorder>
+  <zorder>przepisyPrzyrzadzenieTextEdit</zorder>
+  <zorder>verticalLayoutWidget_2</zorder>
+  <zorder>przepisyListWidget</zorder>
+  <zorder>label_3</zorder>
  </widget>
  <resources/>
  <connections/>

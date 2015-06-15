@@ -9,19 +9,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>680</width>
+    <width>800</width>
     <height>450</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>680</width>
+    <width>800</width>
     <height>450</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>680</width>
+    <width>800</width>
     <height>450</height>
    </size>
   </property>
@@ -33,7 +33,7 @@
     <rect>
      <x>10</x>
      <y>120</y>
-     <width>301</width>
+     <width>391</width>
      <height>281</height>
     </rect>
    </property>
@@ -76,13 +76,13 @@
        <widget class="QSpinBox" name="jednostkaSpinBox">
         <property name="minimumSize">
          <size>
-          <width>40</width>
+          <width>50</width>
           <height>16</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>40</width>
+          <width>50</width>
           <height>16</height>
          </size>
         </property>
@@ -104,13 +104,13 @@
        <widget class="QLabel" name="jednostkaLabel">
         <property name="minimumSize">
          <size>
-          <width>30</width>
+          <width>40</width>
           <height>23</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>30</width>
+          <width>40</width>
           <height>23</height>
          </size>
         </property>
@@ -126,13 +126,13 @@
        <widget class="QPushButton" name="dodajSkladnikPushButton">
         <property name="minimumSize">
          <size>
-          <width>80</width>
+          <width>100</width>
           <height>23</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>80</width>
+          <width>100</width>
           <height>23</height>
          </size>
         </property>
@@ -157,7 +157,7 @@
     <rect>
      <x>10</x>
      <y>410</y>
-     <width>651</width>
+     <width>781</width>
      <height>25</height>
     </rect>
    </property>
@@ -176,7 +176,7 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>301</width>
+     <width>391</width>
      <height>101</height>
     </rect>
    </property>
@@ -274,9 +274,9 @@
   <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>320</x>
+     <x>410</x>
      <y>10</y>
-     <width>341</width>
+     <width>381</width>
      <height>391</height>
     </rect>
    </property>
