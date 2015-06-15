@@ -30,6 +30,24 @@ ShowPrzepisyDialog::~ShowPrzepisyDialog()
 
 void ShowPrzepisyDialog::on_przepisyListWidget_itemSelectionChanged()
 {
+    this->ui->przepisSkladnikiListWidget->clear();
+    this->ui->przepisyPrzyrzadzenieTextEdit->clear();
+
+    this->ui->przepisNazwaLabel->clear();
+    this->ui->przepisTrudnosclabel->clear();
+    this->ui->przepisCzasPrzygotowaniaLabel->clear();
+
+    this->ui->przepisBialkaLabel->clear();
+    this->ui->przepisBlonnikLabel->clear();
+    this->ui->przepisCholesterolLabel->clear();
+    this->ui->przepisCukryLabel->clear();
+    this->ui->przepisKalorieLabel->clear();
+    this->ui->przepisSodLabel->clear();
+    this->ui->przepisTluszczeCalkowiteLabel->clear();
+    this->ui->przepisTluszczeNasyconeLabel->clear();
+    this->ui->przepisTluszczeNienasyconeLabel->clear();
+    this->ui->przepisWeglowodanyLabel->clear();
+
     Przepis przepis = this->przepiss.at(this->ui->przepisyListWidget->currentIndex().row());
     this->loadPrzepisData(przepis);
 }
@@ -100,4 +118,32 @@ void ShowPrzepisyDialog::loadPrzepisData(const Przepis &przepis) {
     this->ui->przepisBlonnikLabel->setText(QString::number(blonnikTotal));
     this->ui->przepisCukryLabel->setText(QString::number(cukryTotal));
     this->ui->przepisBialkaLabel->setText(QString::number(bialkaTotal));
+}
+
+void ShowPrzepisyDialog::on_przepisyUlubionesCheckBox_stateChanged(int arg1)
+{
+    QSqlDatabase database = QSqlDatabase::addDatabase("QSQLITE","cookbook");
+    database.setDatabaseName("../DB/cookbook.db");
+
+    if(database.open()) {
+        this->ui->przepisyListWidget->clear();
+
+        if(this->ui->przepisyUlubionesCheckBox->isChecked()) {
+            QSqlQuery query(database);
+            przepiss = Przepis::getObjects(query, true);
+            foreach(Przepis przepis, przepiss)
+                this->ui->przepisyListWidget->addItem(przepis.getNazwa());
+        }
+        else
+        {
+            QSqlQuery query(database);
+            przepiss = Przepis::getObjects(query);
+            foreach(Przepis przepis, przepiss)
+                this->ui->przepisyListWidget->addItem(przepis.getNazwa());
+        }
+    }
+
+    if(database.isOpen()) {
+        database.close();
+    }
 }

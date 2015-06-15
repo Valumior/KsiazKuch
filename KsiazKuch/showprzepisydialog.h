@@ -20,6 +20,8 @@ public:
 private slots:
     void on_przepisyListWidget_itemSelectionChanged();
 
+    void on_przepisyUlubionesCheckBox_stateChanged(int arg1);
+
 private:
     Ui::ShowPrzepisyDialog *ui;
     QList<Przepis> przepiss;

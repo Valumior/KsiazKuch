@@ -381,20 +381,33 @@
      <x>10</x>
      <y>10</y>
      <width>220</width>
-     <height>300</height>
+     <height>270</height>
     </rect>
    </property>
    <property name="minimumSize">
     <size>
      <width>220</width>
-     <height>300</height>
+     <height>270</height>
     </size>
    </property>
    <property name="maximumSize">
     <size>
      <width>220</width>
-     <height>300</height>
+     <height>270</height>
     </size>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="przepisyUlubionesCheckBox">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>290</y>
+     <width>221</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Tylko ulubione?</string>
    </property>
   </widget>
   <zorder>verticalLayoutWidget</zorder>
@@ -402,6 +415,7 @@
   <zorder>verticalLayoutWidget_2</zorder>
   <zorder>przepisyListWidget</zorder>
   <zorder>label_3</zorder>
+  <zorder>przepisyUlubionesCheckBox</zorder>
  </widget>
  <resources/>
  <connections/>
