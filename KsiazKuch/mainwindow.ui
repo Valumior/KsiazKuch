@@ -32,7 +32,7 @@
       <x>0</x>
       <y>0</y>
       <width>160</width>
-      <height>54</height>
+      <height>141</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -50,18 +50,6 @@
        </property>
       </widget>
      </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="verticalLayoutWidget_2">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>60</y>
-      <width>160</width>
-      <height>54</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="verticalLayout_2">
      <item>
       <widget class="QPushButton" name="seePrzepisyButton">
        <property name="text">
@@ -73,6 +61,13 @@
       <widget class="QPushButton" name="seeSkladnikiButton">
        <property name="text">
         <string>Przeglądaj składniki</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="editSkladnikiButton">
+       <property name="text">
+        <string>Edytuj składniki</string>
        </property>
       </widget>
      </item>

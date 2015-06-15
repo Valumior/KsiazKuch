@@ -2,6 +2,7 @@
 #define ADDSKLADNIKDIALOG_H
 
 #include <QDialog>
+#include "skladnik.h"
 
 namespace Ui {
 class AddSkladnikDialog;
@@ -13,6 +14,7 @@ class AddSkladnikDialog : public QDialog
 
 public:
     explicit AddSkladnikDialog(QWidget *parent = 0);
+    explicit AddSkladnikDialog(Skladnik skladnik, QWidget *parent = 0);
     ~AddSkladnikDialog();
 
 private slots:
@@ -30,6 +32,8 @@ private slots:
 
 private:
     Ui::AddSkladnikDialog *ui;
+    Skladnik editedSkladnik;
+    bool isSkladnikBeingEdited;
 
     void displayDialog(QString errorDescription);
 };

@@ -24,6 +24,8 @@ private slots:
     void showSeePrzepisy();
     void showSeeSkladniki();
 
+    void on_editSkladnikiButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     QSqlDatabase db;

@@ -4,6 +4,7 @@
 #include "addskladnikdialog.h"
 #include "showprzepisydialog.h"
 #include "showskladnikidialog.h"
+#include "editskladnikdialog.h"
 #include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -60,4 +61,10 @@ void MainWindow::showSeeSkladniki()
 {
     ShowSkladnikiDialog *showSkladnikiDialog = new ShowSkladnikiDialog(this);
     showSkladnikiDialog->show();
+}
+
+void MainWindow::on_editSkladnikiButton_clicked()
+{
+    editskladnikdialog *editSkladnikiDialog = new editskladnikdialog(this);
+    editSkladnikiDialog->show();
 }

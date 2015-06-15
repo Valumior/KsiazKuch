@@ -2,13 +2,40 @@
 #include "ui_addskladnikdialog.h"
 #include <QMessageBox>
 #include "wartosciodzywcze.h"
-#include "skladnik.h"
 
 AddSkladnikDialog::AddSkladnikDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::AddSkladnikDialog)
 {
     ui->setupUi(this);
+
+    this->isSkladnikBeingEdited = false;
+}
+
+AddSkladnikDialog::AddSkladnikDialog(Skladnik skladnik, QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::AddSkladnikDialog)
+{
+    ui->setupUi(this);
+
+    this->isSkladnikBeingEdited = true;
+    this->editedSkladnik = skladnik;
+    this->ui->pushButton->setText("Edytuj składnik!");
+
+    this->ui->miaraComboBox->setCurrentIndex(skladnik.getMiara());
+    emit on_miaraComboBox_currentIndexChanged(skladnik.getMiara());
+    this->ui->nazwaLineEdit->setText(skladnik.getNazwa());
+
+    this->ui->kalorieSpinBox->setValue(skladnik.getWartosciOdzywcze().getKalorie());
+    this->ui->tluszczeCalkowiteSpinBox->setValue(skladnik.getWartosciOdzywcze().getTluszczeCalkowite());
+    this->ui->tluszczeNasyconeSpinBox->setValue(skladnik.getWartosciOdzywcze().getTluszczeNienasycone());
+    this->ui->tluszczeNienasyconeSpinBox->setValue(skladnik.getWartosciOdzywcze().getTluszczeNienasycone());
+    this->ui->cholesterolSpinBox_5->setValue(skladnik.getWartosciOdzywcze().getWeglowodany());
+    this->ui->sodSpinBox->setValue(skladnik.getWartosciOdzywcze().getSod());
+    this->ui->weglowodanySpinBox->setValue(skladnik.getWartosciOdzywcze().getWeglowodany());
+    this->ui->blonnikSpinBox->setValue(skladnik.getWartosciOdzywcze().getBlonnik());
+    this->ui->cukrySpinBox->setValue(skladnik.getWartosciOdzywcze().getCukry());
+    this->ui->bialkaSpinBox->setValue(skladnik.getWartosciOdzywcze().getBialka());
 }
 
 AddSkladnikDialog::~AddSkladnikDialog()
@@ -39,23 +66,45 @@ void AddSkladnikDialog::on_pushButton_clicked()
     wartosciOdzywcze.setTluszczeNienasycone(this->ui->tluszczeNienasyconeSpinBox->value());
     wartosciOdzywcze.setWeglowodany(this->ui->weglowodanySpinBox->value());
 
-    Skladnik skladnik;
-    skladnik.setNazwa(this->ui->nazwaLineEdit->text());
-    skladnik.setMiara(Skladnik::Miara(this->ui->miaraComboBox->currentIndex()));
-    skladnik.setWartosciOdzywcze(wartosciOdzywcze);
-
     QSqlDatabase database = QSqlDatabase::addDatabase("QSQLITE","cookbook");
     database.setDatabaseName("../DB/cookbook.db");
 
-    if(database.open()) {
-        QSqlQuery query(database);
-        skladnik.insertToDb(query);
-        this->displayDialog("Składnik poprawnie dodany!");
-        database.close();
-        this->close();
+    if(this->isSkladnikBeingEdited) {
+        this->editedSkladnik.setNazwa(this->ui->nazwaLineEdit->text());
+        this->editedSkladnik.setMiara(Skladnik::Miara(this->ui->miaraComboBox->currentIndex()));
+        this->editedSkladnik.setWartosciOdzywcze(wartosciOdzywcze);
+
+        if(database.open()) {
+            QSqlQuery query(database);
+            this->editedSkladnik.updateDb(query);
+            this->displayDialog("Składnik poprawnie edytowany!");
+            database.close();
+            this->close();
+        }
+        else {
+            this->displayDialog("Nie można bylo nawiązać połączenia z bazą danych!");
+        }
     }
     else {
-        this->displayDialog("Nie można bylo nawiązać połączenia z bazą danych!");
+        Skladnik skladnik;
+        skladnik.setNazwa(this->ui->nazwaLineEdit->text());
+        skladnik.setMiara(Skladnik::Miara(this->ui->miaraComboBox->currentIndex()));
+        skladnik.setWartosciOdzywcze(wartosciOdzywcze);
+
+        if(database.open()) {
+            QSqlQuery query(database);
+            skladnik.insertToDb(query);
+            this->displayDialog("Składnik poprawnie dodany!");
+            database.close();
+            this->close();
+        }
+        else {
+            this->displayDialog("Nie można bylo nawiązać połączenia z bazą danych!");
+        }
+    }
+
+    if(database.open()) {
+        database.close();
     }
 }
 
