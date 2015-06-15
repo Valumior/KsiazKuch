@@ -67,6 +67,28 @@ void WartosciOdzywcze::insertToDb(QSqlQuery query)
     query.exec();
 }
 
+void WartosciOdzywcze::updateDb(QSqlQuery query, int id)
+{
+    QString q = "UPDATE wartosci_odzywcze ";
+    q = q + "SET kalorie=:kal, tluszcze_calkowite=:tcal, tluszcze_nasycone=:tnas, " +
+            "tluszcze_nienasycone=:tnnas, cholesterol=:chol, sod=:sod, weglowodany=:wegl, " +
+            "blonnik=:blo, cukry=:cuk, bialka=:bia " +
+            "WHERE id=:id";
+    query.prepare(q);
+    query.bindValue(":kal", this->kalorie);
+    query.bindValue(":tcal", this->tluszczeCalkowite);
+    query.bindValue(":tnas", this->tluszczeNasycone);
+    query.bindValue(":tnnas", this->tluszczeNienasycone);
+    query.bindValue(":chol", this->cholesterol);
+    query.bindValue(":sod", this->sod);
+    query.bindValue(":wegl", this->weglowodany);
+    query.bindValue(":blo", this->blonnik);
+    query.bindValue(":cuk", this->cukry);
+    query.bindValue(":bia", this->bialka);
+    query.bindValue(":id", id);
+    query.exec();
+}
+
 int WartosciOdzywcze::getKalorie() const
 {
     return kalorie;
