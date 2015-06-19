@@ -35,6 +35,8 @@ AddPrzepisDialog::AddPrzepisDialog(Przepis przepis, QWidget *parent) :
     this->isPrzepisBeingEdited = true;
     this->editedPrzepis = przepis;
 
+    this->ui->stworzPrzepisPushButton->setText("Edytuj przepis!");
+
     this->ui->nazwaLineEdit->setText(przepis.getNazwa());
     this->ui->czasPrzygotowaniaSpinBox->setValue(przepis.getCzasPrzygotowania());
     this->ui->trudnoscComboBox->setCurrentIndex(przepis.getTrudnosc());
