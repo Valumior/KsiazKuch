@@ -3,3 +3,5 @@ build-KsiazKuch-Desktop_Qt_5_4_2_GCC_64bit-Debug/*
 *.autosave
 build-KsiazKuch-Desktop_Qt_5_4_2_MSVC2010_OpenGL_32bit-Debug/
 /JKsiazKuch/nbproject/private/
+/JKsiazKuch/build/
+/JKsiazKuch/dist/
