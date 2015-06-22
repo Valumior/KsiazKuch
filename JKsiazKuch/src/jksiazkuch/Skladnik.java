@@ -61,6 +61,10 @@ public class Skladnik {
                 this.miara.ordinal() + " WHERE id=" + this.id;
         query.executeUpdate(q);
     }
+    
+    public static ArrayList<Skladnik> getObjects(Statement query) throws SQLException{
+        return Skladnik.getObjects(query, "");
+    }
 
     public static ArrayList<Skladnik> getObjects(Statement query, String filter) throws SQLException{
         ArrayList<Skladnik> list = new ArrayList<>();
@@ -114,4 +118,10 @@ public class Skladnik {
     public void setWartosciOdzywcze(WartosciOdzywcze wartosciOdzywcze) {
         this.wartosciOdzywcze = wartosciOdzywcze;
     }
+
+    @Override
+    public String toString() {
+        return this.getNazwa();
+    }
+    
 }
