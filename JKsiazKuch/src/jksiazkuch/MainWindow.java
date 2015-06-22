@@ -127,7 +127,8 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_addPrzepisButtonActionPerformed
 
     private void addSkladnikButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSkladnikButtonActionPerformed
-        // TODO add your handling code here:
+        AddSkladnik addSkladnik = new AddSkladnik(this, true);
+        addSkladnik.setVisible(true);
     }//GEN-LAST:event_addSkladnikButtonActionPerformed
 
     private void showPrzepisyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPrzepisyButtonActionPerformed

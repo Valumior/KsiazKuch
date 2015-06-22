@@ -27,13 +27,11 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                   <Component id="editPrzepisButton" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="editSkladnikButton" max="32767" attributes="0"/>
-                      <Component id="addPrzepisButton" alignment="0" max="32767" attributes="0"/>
-                      <Component id="addSkladnikButton" alignment="0" max="32767" attributes="0"/>
-                      <Component id="showPrzepisyButton" alignment="0" max="32767" attributes="0"/>
-                      <Component id="showSkaldnikiButton" alignment="0" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="editSkladnikButton" max="32767" attributes="0"/>
+                  <Component id="addPrzepisButton" alignment="0" max="32767" attributes="0"/>
+                  <Component id="addSkladnikButton" alignment="0" max="32767" attributes="0"/>
+                  <Component id="showPrzepisyButton" alignment="0" max="32767" attributes="0"/>
+                  <Component id="showSkaldnikiButton" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
