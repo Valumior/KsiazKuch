@@ -14,15 +14,14 @@ import java.sql.Statement;
  *
  * @author valumior
  */
-public class EditSkladnik extends javax.swing.JDialog {
+public class EditPrzepis extends javax.swing.JDialog {
 
     /**
-     * Creates new form EditSkladnik
+     * Creates new form EditPrzepis
      */
-    public EditSkladnik(java.awt.Frame parent, boolean modal) {
+    public EditPrzepis(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        LoadList();
     }
 
     /**
@@ -35,24 +34,23 @@ public class EditSkladnik extends javax.swing.JDialog {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        editPrzepis = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        skladnikiList = new javax.swing.JList();
-        editSkladnik = new javax.swing.JButton();
+        przepisyList = new javax.swing.JList();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Wybierz skladnik z listy");
+        jLabel1.setText("Edytuj przepisy");
 
-        skladnikiList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane1.setViewportView(skladnikiList);
-
-        editSkladnik.setText("Edytuj skladnik");
-        editSkladnik.addActionListener(new java.awt.event.ActionListener() {
+        editPrzepis.setText("Edytuj przepis");
+        editPrzepis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editSkladnikActionPerformed(evt);
+                editPrzepisActionPerformed(evt);
             }
         });
+
+        jScrollPane1.setViewportView(przepisyList);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -61,9 +59,9 @@ public class EditSkladnik extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(editSkladnik, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(editPrzepis, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -72,22 +70,22 @@ public class EditSkladnik extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(editSkladnik, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(editPrzepis)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void editSkladnikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editSkladnikActionPerformed
-        Skladnik skladnik = (Skladnik)this.skladnikiList.getSelectedValue();
+    private void editPrzepisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editPrzepisActionPerformed
+        Przepis przepis = (Przepis)przepisyList.getSelectedValue();
         
-        //AddSkladnikDialog *addSkladnikDialog = new AddSkladnikDialog(skladnik, this);
-        //addSkladnikDialog->show();
+        //TODO
+        
         this.dispose();
-    }//GEN-LAST:event_editSkladnikActionPerformed
+    }//GEN-LAST:event_editPrzepisActionPerformed
 
     private void LoadList(){
         Connection con = null;
@@ -97,7 +95,7 @@ public class EditSkladnik extends javax.swing.JDialog {
                 con = DriverManager.getConnection("jdbc:sqlite:../DB/cookbook.db");
                 Statement state = con.createStatement();
             
-                skladnikiList.setListData(Skladnik.getObjects(state).toArray());
+                przepisyList.setListData(Przepis.getObjects(state).toArray());
             }
             catch(SQLException e){
                 System.out.println(e.getMessage());
@@ -134,20 +132,20 @@ public class EditSkladnik extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditSkladnik.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditPrzepis.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditSkladnik.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditPrzepis.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditSkladnik.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditPrzepis.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditSkladnik.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditPrzepis.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                EditSkladnik dialog = new EditSkladnik(new javax.swing.JFrame(), true);
+                EditPrzepis dialog = new EditPrzepis(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -160,9 +158,9 @@ public class EditSkladnik extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton editSkladnik;
+    private javax.swing.JButton editPrzepis;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JList skladnikiList;
+    private javax.swing.JList przepisyList;
     // End of variables declaration//GEN-END:variables
 }

@@ -146,7 +146,8 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_editSkladnikButtonActionPerformed
 
     private void editPrzepisButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editPrzepisButtonActionPerformed
-        // TODO add your handling code here:
+        EditPrzepis editPrzepis = new EditPrzepis(this, true);
+        editPrzepis.setVisible(true);
     }//GEN-LAST:event_editPrzepisButtonActionPerformed
 
     /**
