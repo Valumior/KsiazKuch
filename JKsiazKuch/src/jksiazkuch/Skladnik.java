@@ -46,7 +46,7 @@ public class Skladnik {
         if(result.next())
         {
             String q = "INSERT INTO skladnik (nazwa, miara, wartosci_odzywcze) " + 
-                    "VALUES (" + this.nazwa + ", " + this.miara.ordinal() + ", " + 
+                    "VALUES ('" + this.nazwa + "', " + this.miara.ordinal() + ", " + 
                     result.getInt(1) + ")";
             query.executeUpdate(q);
         }
@@ -57,7 +57,7 @@ public class Skladnik {
         if(result.next())
             this.wartosciOdzywcze.updateDb(query, result.getInt(1));
 
-        String q = "UPDATE skladnik  SET nazwa=" + this.nazwa + ", miara=" + 
+        String q = "UPDATE skladnik  SET nazwa='" + this.nazwa + "', miara=" + 
                 this.miara.ordinal() + " WHERE id=" + this.id;
         query.executeUpdate(q);
     }

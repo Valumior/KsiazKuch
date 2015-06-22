@@ -33,9 +33,12 @@ public class AddSkladnik extends javax.swing.JDialog {
     public AddSkladnik(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        initEvents();
         
         this.isSkladnikBeingEdited = false;
-        
+    }
+    
+    private void initEvents(){
         this.tluszczeNascyconeSpinner.addChangeListener(new ChangeListener() {
 
             @Override
@@ -154,8 +157,6 @@ public class AddSkladnik extends javax.swing.JDialog {
     }
     
     private void saveSkladnik() {
-        System.out.println(this.isSkladnikBeingEdited);
-        
         String nazwaString = this.nazwaTextField.getText();
         if(nazwaString.length() == 0)
         {
@@ -216,6 +217,7 @@ public class AddSkladnik extends javax.swing.JDialog {
                 System.out.println(e.getMessage());
             }
         }
+        this.dispose();
     }
     
     /**
@@ -256,9 +258,9 @@ public class AddSkladnik extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("jLabel1");
+        jLabel1.setText("Nazwa:");
 
-        jLabel2.setText("jLabel2");
+        jLabel2.setText("Miara:");
 
         nazwaTextField.setText("Twój składnik");
         nazwaTextField.setToolTipText("");

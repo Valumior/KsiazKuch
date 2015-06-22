@@ -5,6 +5,7 @@
  */
 package jksiazkuch;
 
+import java.awt.Frame;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -84,8 +85,9 @@ public class EditSkladnik extends javax.swing.JDialog {
     private void editSkladnikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editSkladnikActionPerformed
         Skladnik skladnik = (Skladnik)this.skladnikiList.getSelectedValue();
         
-        //AddSkladnikDialog *addSkladnikDialog = new AddSkladnikDialog(skladnik, this);
-        //addSkladnikDialog->show();
+        AddSkladnik addSkladnik = new AddSkladnik((Frame)this.getParent(), true, skladnik);
+        addSkladnik.setVisible(true);
+        
         this.dispose();
     }//GEN-LAST:event_editSkladnikActionPerformed
 

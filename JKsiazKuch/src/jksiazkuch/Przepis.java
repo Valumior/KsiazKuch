@@ -34,8 +34,8 @@ public class Przepis {
     
     void insertToDb(Statement query) throws SQLException{
         String q = "INSERT INTO przepis (nazwa, czas_przygotowania, trudnosc, ulubione, instrukcja) " + 
-                "VALUES (" + this.nazwa + ", " + this.czasPrzygotowania + ", " + 
-                this.trudnosc + ", " + ((this.ulubione) ? 1 : 0) + ", " + this.instrukcja + ")";
+                "VALUES ('" + this.nazwa + "', " + this.czasPrzygotowania + ", " + 
+                this.trudnosc + ", " + ((this.ulubione) ? 1 : 0) + ", '" + this.instrukcja + "')";
         query.executeUpdate(q);
 
         ResultSet result = query.executeQuery("SELECT last_insert_rowid()");
@@ -51,10 +51,10 @@ public class Przepis {
     void updateDb(Statement query) throws SQLException{
         query.executeUpdate("DELETE FORM skladniki_przepis WHERE przepis=" + this.id);
 
-        String q = "UPDATE przepis SET nazwa=" + this.nazwa + ", czas_przygotowania=" + 
+        String q = "UPDATE przepis SET nazwa='" + this.nazwa + "', czas_przygotowania=" + 
                 this.czasPrzygotowania + ", trudnosc=" + this.trudnosc.ordinal() + 
-                ", ulubione=" + ((this.ulubione) ? 1 : 0) + ", instrukcja=" + 
-                this.instrukcja + " WHERE id=" + this.id;
+                ", ulubione=" + ((this.ulubione) ? 1 : 0) + ", instrukcja='" + 
+                this.instrukcja + "' WHERE id=" + this.id;
         query.executeUpdate(q);
 
         for(int i = 0; i < this.skladniki.size(); ++i)
