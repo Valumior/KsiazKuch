@@ -9,10 +9,16 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.JLabel;
+import javax.swing.JSlider;
+import javax.swing.JSpinner;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 /**
  *
@@ -37,6 +43,30 @@ public class ShowSkladniki extends javax.swing.JDialog {
                 ListItemSelectionChanged(e);
             }
             
+        });
+        
+        this.skladnikWartosciSpinBox.addChangeListener(new ChangeListener() {
+
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                JSpinner spinner = (JSpinner) e.getSource();
+                Integer newValue = Integer.parseInt(spinner.getValue().toString());
+
+                skladnikWartoscihorizontalSlider.setValue(newValue);
+                adjustWartosciOdzywczeValues(newValue);
+            }
+        });
+        
+        this.skladnikWartoscihorizontalSlider.addChangeListener(new ChangeListener() {
+
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                JSlider slider = (JSlider) e.getSource();
+                Integer newValue = slider.getValue();
+                
+                skladnikWartosciSpinBox.setValue(newValue);
+                adjustWartosciOdzywczeValues(newValue);
+            }
         });
     }
 
@@ -73,6 +103,8 @@ public class ShowSkladniki extends javax.swing.JDialog {
         skladnikiBlonnikLabel = new javax.swing.JLabel();
         skladnikiCukryLabel = new javax.swing.JLabel();
         skladnikiBialkaLabel = new javax.swing.JLabel();
+        skladnikWartosciSpinBox = new javax.swing.JSpinner();
+        skladnikWartoscihorizontalSlider = new javax.swing.JSlider();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setModal(true);
@@ -103,59 +135,71 @@ public class ShowSkladniki extends javax.swing.JDialog {
 
         jLabel10.setText("Bialka:");
 
+        skladnikWartosciSpinBox.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10000, 1));
+
+        skladnikWartoscihorizontalSlider.setMaximum(10000);
+        skladnikWartoscihorizontalSlider.setMinimum(1);
+        skladnikWartoscihorizontalSlider.setValue(1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(skladnikWartosciOdzywczeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(skladnikiCholesterolLabel))
+                        .addComponent(skladnikWartoscihorizontalSlider, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(skladnikWartosciSpinBox, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(skladnikiKalorieLabel))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(skladnikiTluszczeCalkowiteLabel))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(skladnikiBialkaLabel))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(skladnikiSodLabel))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(skladnikiWeglowodanyLabel))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(skladnikWartosciOdzywczeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel8)
+                                .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(skladnikiBlonnikLabel))
+                                .addComponent(skladnikiCholesterolLabel))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel9)
+                                .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(skladnikiCukryLabel))
+                                .addComponent(skladnikiKalorieLabel))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
-                                .addComponent(skladnikiTluszczeNienasyconeLabel))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
+                                .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(skladnikiTluszczeNasyconeLabel)))))
+                                .addComponent(skladnikiTluszczeCalkowiteLabel))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(skladnikiBialkaLabel))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(skladnikiSodLabel))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(skladnikiWeglowodanyLabel))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel8)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(skladnikiBlonnikLabel))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel9)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(skladnikiCukryLabel))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                                        .addComponent(skladnikiTluszczeNienasyconeLabel))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(skladnikiTluszczeNasyconeLabel)))))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -206,7 +250,11 @@ public class ShowSkladniki extends javax.swing.JDialog {
                             .addComponent(jLabel10)
                             .addComponent(skladnikiBialkaLabel)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(skladnikWartosciSpinBox, javax.swing.GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE)
+                    .addComponent(skladnikWartoscihorizontalSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -241,28 +289,63 @@ public class ShowSkladniki extends javax.swing.JDialog {
         }
     }
     
+    private void adjustWartosciOdzywczeValues(int newValue) {
+        Skladnik skladnik = (Skladnik)this.jList1.getSelectedValue();
+
+        double ratio = 1;
+        if(skladnik.getMiara() == Skladnik.Miara.Mililitry || skladnik.getMiara() == Skladnik.Miara.Gramy) {
+            ratio = 100;
+        }
+
+        ratio = newValue / ratio;
+
+        this.skladnikiKalorieLabel.setText(Double.toString(skladnik.getWartosciOdzywcze().getKalorie() * ratio));
+        this.skladnikiTluszczeCalkowiteLabel.setText(Double.toString(skladnik.getWartosciOdzywcze().getTluszczeCalkowite() * ratio));
+        this.skladnikiTluszczeNasyconeLabel.setText(Double.toString(skladnik.getWartosciOdzywcze().getTluszczeNasycone() * ratio));
+        this.skladnikiTluszczeNienasyconeLabel.setText(Double.toString(skladnik.getWartosciOdzywcze().getTluszczeNienasycone() * ratio));
+        this.skladnikiCholesterolLabel.setText(Double.toString(skladnik.getWartosciOdzywcze().getCholesterol() * ratio));
+        this.skladnikiSodLabel.setText(Double.toString(skladnik.getWartosciOdzywcze().getSod() * ratio));
+        this.skladnikiWeglowodanyLabel.setText(Double.toString(skladnik.getWartosciOdzywcze().getWeglowodany() * ratio));
+        this.skladnikiCukryLabel.setText(Double.toString(skladnik.getWartosciOdzywcze().getCukry() * ratio));
+        this.skladnikiBlonnikLabel.setText(Double.toString(skladnik.getWartosciOdzywcze().getBlonnik() * ratio));
+        this.skladnikiBialkaLabel.setText(Double.toString(skladnik.getWartosciOdzywcze().getBialka() * ratio));
+
+        this.rephraseKaloriesMiarasOn(this.skladnikiKalorieLabel);
+        this.rephraseGramysMiaraOn(this.skladnikiTluszczeCalkowiteLabel);
+        this.rephraseGramysMiaraOn(this.skladnikiTluszczeNasyconeLabel);
+        this.rephraseGramysMiaraOn(this.skladnikiTluszczeNienasyconeLabel);
+        this.rephraseGramysMiaraOn(this.skladnikiCholesterolLabel);
+        this.rephraseGramysMiaraOn(this.skladnikiSodLabel);
+        this.rephraseGramysMiaraOn(this.skladnikiWeglowodanyLabel);
+        this.rephraseGramysMiaraOn(this.skladnikiCukryLabel);
+        this.rephraseGramysMiaraOn(this.skladnikiBlonnikLabel);
+        this.rephraseGramysMiaraOn(this.skladnikiBialkaLabel);
+
+        this.changeTitleOnTopLabel();
+   }
+    
     private void ListItemSelectionChanged(ListSelectionEvent e){
         Skladnik skladnik = (Skladnik)this.jList1.getSelectedValue();
-/*
-    if(skladnik.getMiara() == Skladnik.Miara.Mililitry || skladnik.getMiara() == Skladnik.Miara.Gramy) {
-        this->ui->skladnikWartoscihorizontalSlider->setMinimum(1);
-        this->ui->skladnikWartoscihorizontalSlider->setMaximum(10000);
-        this->ui->skladnikWartoscihorizontalSlider->setValue(100);
 
-        this->ui->skladnikWartosciSpinBox->setMinimum(1);
-        this->ui->skladnikWartosciSpinBox->setMaximum(10000);
-        this->ui->skladnikWartosciSpinBox->setValue(100);
+    if(skladnik.getMiara() == Skladnik.Miara.Mililitry || skladnik.getMiara() == Skladnik.Miara.Gramy) {
+        this.skladnikWartoscihorizontalSlider.setMinimum(1);
+        this.skladnikWartoscihorizontalSlider.setMaximum(10000);
+        this.skladnikWartoscihorizontalSlider.setValue(100);
+
+        ((SpinnerNumberModel)this.skladnikWartosciSpinBox.getModel()).setMinimum(1);
+        ((SpinnerNumberModel)this.skladnikWartosciSpinBox.getModel()).setMaximum(10000);
+        this.skladnikWartosciSpinBox.setValue(100);
     }
     else {
-        this->ui->skladnikWartoscihorizontalSlider->setMinimum(1);
-        this->ui->skladnikWartoscihorizontalSlider->setMaximum(100);
-        this->ui->skladnikWartoscihorizontalSlider->setValue(1);
+        this.skladnikWartoscihorizontalSlider.setMinimum(1);
+        this.skladnikWartoscihorizontalSlider.setMaximum(100);
+        this.skladnikWartoscihorizontalSlider.setValue(1);
 
-        this->ui->skladnikWartosciSpinBox->setMinimum(1);
-        this->ui->skladnikWartosciSpinBox->setMaximum(100);
-        this->ui->skladnikWartosciSpinBox->setValue(1);
+        ((SpinnerNumberModel)this.skladnikWartosciSpinBox.getModel()).setMinimum(1);
+        ((SpinnerNumberModel)this.skladnikWartosciSpinBox.getModel()).setMaximum(100);
+        this.skladnikWartosciSpinBox.setValue(1);
     }
-*/
+
         this.skladnikiKalorieLabel.setText(Integer.toString(skladnik.getWartosciOdzywcze().getKalorie()));
         this.skladnikiTluszczeCalkowiteLabel.setText(Integer.toString(skladnik.getWartosciOdzywcze().getTluszczeCalkowite()));
         this.skladnikiTluszczeNasyconeLabel.setText(Integer.toString(skladnik.getWartosciOdzywcze().getTluszczeNasycone()));
@@ -293,10 +376,10 @@ public class ShowSkladniki extends javax.swing.JDialog {
         double kilokalories = kalories / 1000;
     
         if(kilokalories < 1.0f) {
-            label.setText(kalories + " cal");
+            label.setText(new DecimalFormat("#.##").format(kalories) + " cal");
             return;
         }
-        label.setText(kilokalories + " kcal");
+        label.setText(new DecimalFormat("#.##").format(kilokalories) + " kcal");
     }
 
     private void rephraseGramysMiaraOn(JLabel label) {
@@ -304,34 +387,34 @@ public class ShowSkladniki extends javax.swing.JDialog {
         double gramys = miligramys / 1000;
         
         if(gramys < 1.0f) {
-            label.setText(miligramys + " mg");
+            label.setText(new DecimalFormat("#.##").format(miligramys) + " mg");
             return;
         }
 
         double kilogramys = gramys / 1000;
         if(kilogramys < 1.0f) {
-            label.setText(gramys + " g");
+            label.setText(new DecimalFormat("#.##").format(gramys) + " g");
             return;
         }
-        label.setText(kilogramys + " kg");
+        label.setText(new DecimalFormat("#.##").format(kilogramys) + " kg");
     }
 
     private void changeTitleOnTopLabel() {
         Skladnik skladnik = (Skladnik)this.jList1.getSelectedValue();
-        //int miaraValue = this->ui->skladnikWartosciSpinBox->value();
+        Integer miaraValue = (Integer) this.skladnikWartosciSpinBox.getValue();
 
         switch(skladnik.getMiara()) {
             case Mililitry:
                 this.skladnikWartosciOdzywczeLabel.setText("Wartości odżywcze dla " 
-                        + 100 + " ml");
+                        + miaraValue + " ml");
                 break;
             case Gramy:
                this.skladnikWartosciOdzywczeLabel.setText("Wartości odżywcze dla " 
-                        + 100 + " g");
+                        + miaraValue + " g");
                 break;
             case Sztuki:
                 this.skladnikWartosciOdzywczeLabel.setText("Wartości odżywcze dla " 
-                        + 1 + " sztuk");
+                        + miaraValue + " sztuk");
                 break;
             default:
                 break;
@@ -395,6 +478,8 @@ public class ShowSkladniki extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSlider jSlider1;
     private javax.swing.JLabel skladnikWartosciOdzywczeLabel;
+    private javax.swing.JSpinner skladnikWartosciSpinBox;
+    private javax.swing.JSlider skladnikWartoscihorizontalSlider;
     private javax.swing.JLabel skladnikiBialkaLabel;
     private javax.swing.JLabel skladnikiBlonnikLabel;
     private javax.swing.JLabel skladnikiCholesterolLabel;
