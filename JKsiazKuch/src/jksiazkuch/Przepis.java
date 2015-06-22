@@ -151,4 +151,9 @@ public class Przepis {
     public void setSkladniki(ArrayList<PrzepisSkladnik> skladniki) {
         this.skladniki = skladniki;
     }
+
+    @Override
+    public String toString() {
+        return this.getNazwa();
+    }
 }

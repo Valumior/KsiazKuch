@@ -131,7 +131,8 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_addSkladnikButtonActionPerformed
 
     private void showPrzepisyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPrzepisyButtonActionPerformed
-        // TODO add your handling code here:
+        ShowPrzepisy showPrzepisy = new ShowPrzepisy(this, true);
+        showPrzepisy.setVisible(true);
     }//GEN-LAST:event_showPrzepisyButtonActionPerformed
 
     private void showSkaldnikiButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showSkaldnikiButtonActionPerformed
