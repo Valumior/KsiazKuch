@@ -33,6 +33,8 @@ public class AddPrzepis extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         
+        this.skladnikiList.setModel(new DefaultListModel());
+        
         this.isPrzepisBeingEdited = false;
         this.skladniks = new ArrayList<>();
         
@@ -300,6 +302,8 @@ public class AddPrzepis extends javax.swing.JDialog {
                                  this.jednostkaSpinner.getValue() + " " +
                                  this.jednostkaLabel.getText());
         }
+        
+        skladnikiList.setModel(listModel);
     }//GEN-LAST:event_dodajSkladnikButtonActionPerformed
 
     private void stworzPrzepisPushButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stworzPrzepisPushButtonActionPerformed
@@ -388,6 +392,8 @@ public class AddPrzepis extends javax.swing.JDialog {
                 System.out.println(e.getMessage());
             }
         }
+        
+        this.dispose();
     }//GEN-LAST:event_stworzPrzepisPushButtonActionPerformed
 
     /**

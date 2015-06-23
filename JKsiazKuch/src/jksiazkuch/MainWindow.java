@@ -123,7 +123,8 @@ public class MainWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addPrzepisButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPrzepisButtonActionPerformed
-        // TODO add your handling code here:
+        AddPrzepis addPrzepis = new AddPrzepis(this, true);
+        addPrzepis.setVisible(true);
     }//GEN-LAST:event_addPrzepisButtonActionPerformed
 
     private void addSkladnikButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSkladnikButtonActionPerformed

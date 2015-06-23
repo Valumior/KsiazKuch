@@ -35,7 +35,7 @@ public class Przepis {
     void insertToDb(Statement query) throws SQLException{
         String q = "INSERT INTO przepis (nazwa, czas_przygotowania, trudnosc, ulubione, instrukcja) " + 
                 "VALUES ('" + this.nazwa + "', " + this.czasPrzygotowania + ", " + 
-                this.trudnosc + ", " + ((this.ulubione) ? 1 : 0) + ", '" + this.instrukcja + "')";
+                this.trudnosc.ordinal() + ", " + ((this.ulubione) ? 1 : 0) + ", '" + this.instrukcja + "')";
         query.executeUpdate(q);
 
         ResultSet result = query.executeQuery("SELECT last_insert_rowid()");

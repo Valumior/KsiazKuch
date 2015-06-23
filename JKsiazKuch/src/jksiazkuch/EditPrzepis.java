@@ -5,6 +5,7 @@
  */
 package jksiazkuch;
 
+import java.awt.Frame;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -82,7 +83,8 @@ public class EditPrzepis extends javax.swing.JDialog {
     private void editPrzepisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editPrzepisActionPerformed
         Przepis przepis = (Przepis)przepisyList.getSelectedValue();
         
-        //TODO
+        AddPrzepis addPrzepis = new AddPrzepis((Frame)this.getParent(), true, przepis);
+        addPrzepis.setVisible(true);
         
         this.dispose();
     }//GEN-LAST:event_editPrzepisActionPerformed
