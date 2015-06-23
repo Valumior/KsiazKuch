@@ -58,7 +58,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="skladnikiComboBox" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jSpinner2" min="-2" pref="49" max="-2" attributes="0"/>
+                              <Component id="jednostkaSpinner" min="-2" pref="49" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jednostkaLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -122,7 +122,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="skladnikiComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jSpinner2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jednostkaSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jednostkaLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="dodajSkladnikButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -230,7 +230,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JSpinner" name="jSpinner2">
+    <Component class="javax.swing.JSpinner" name="jednostkaSpinner">
     </Component>
     <Component class="javax.swing.JLabel" name="jednostkaLabel">
       <Properties>

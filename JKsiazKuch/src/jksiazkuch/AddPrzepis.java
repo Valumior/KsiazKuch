@@ -5,18 +5,120 @@
  */
 package jksiazkuch;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author valumior
  */
 public class AddPrzepis extends javax.swing.JDialog {
 
+    private ArrayList<Skladnik> skladniks;
+    private Przepis editedPrzepis;
+    boolean isPrzepisBeingEdited;
+    
     /**
      * Creates new form AddPrzepis
      */
     public AddPrzepis(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        this.isPrzepisBeingEdited = false;
+        this.skladniks = new ArrayList<>();
+        
+        Connection con = null;
+        try{
+            Class.forName("org.sqlite.JDBC");
+            try{
+                con = DriverManager.getConnection("jdbc:sqlite:../DB/cookbook.db");
+                Statement state = con.createStatement();
+            
+                skladniks = Skladnik.getObjects(state);
+                for(Skladnik skladnik : skladniks) {
+                    this.skladnikiComboBox.addItem(skladnik.getNazwa());
+                }
+            }
+            catch(SQLException e){
+                System.out.println(e.getMessage());
+            }
+            
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        finally{
+            try{
+                con.close();
+            }
+            catch(SQLException e){
+                System.out.println(e.getMessage());
+            }
+        }
+        
+        this.skladnikiComboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JComboBox sender = (JComboBox) e.getSource();
+                Skladnik skladnik = skladniks.get(sender.getSelectedIndex());
+                switch(skladnik.getMiara())
+                {
+                    case Mililitry:
+                        jednostkaLabel.setText("ml");
+                        break;
+                    case Gramy:
+                        jednostkaLabel.setText("g");
+                        break;
+                    case Sztuki:
+                        jednostkaLabel.setText("sztuk");
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+    }
+    
+    public AddPrzepis(java.awt.Frame parent, boolean modal, Przepis przepis) {
+        this(parent, modal);
+        
+        this.isPrzepisBeingEdited = true;
+        this.editedPrzepis = przepis;
+        
+        this.stworzPrzepisPushButton.setText("Edytuj przepis!");
+        this.nazwaTextField.setText(przepis.getNazwa());
+        this.czasPrzygotowaniaSpinner.setValue(przepis.getCzasPrzygotowania());
+        this.trudnoscComboBox.setSelectedIndex(przepis.getTrudnosc().ordinal());
+        this.ulubioneCheckBox.setSelected(przepis.isUlubione());
+        this.przygotowanieTextArea.setText(przepis.getInstrukcja());
+        
+        for(PrzepisSkladnik przepisSkladnik : przepis.getSkladniki()) {
+            String newEntry = przepisSkladnik.getSkladnik().getNazwa() + ": "
+                                + przepisSkladnik.getLiczba();
+            switch(przepisSkladnik.getSkladnik().getMiara()) {
+                case Mililitry:
+                    newEntry += " ml";
+                    break;
+                case Gramy:
+                    newEntry += " g";
+                    break;
+                case Sztuki:
+                    newEntry += " sztuk";
+                    break;
+                default:
+                    break;
+            }
+            ((DefaultListModel) this.skladnikiList.getModel()).addElement(newEntry);
+        }
     }
 
     /**
@@ -45,7 +147,7 @@ public class AddPrzepis extends javax.swing.JDialog {
         ulubioneCheckBox = new javax.swing.JCheckBox();
         jLabel6 = new javax.swing.JLabel();
         skladnikiComboBox = new javax.swing.JComboBox();
-        jSpinner2 = new javax.swing.JSpinner();
+        jednostkaSpinner = new javax.swing.JSpinner();
         jednostkaLabel = new javax.swing.JLabel();
         dodajSkladnikButton = new javax.swing.JButton();
         stworzPrzepisPushButton = new javax.swing.JButton();
@@ -114,7 +216,7 @@ public class AddPrzepis extends javax.swing.JDialog {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(skladnikiComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jednostkaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jednostkaLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -164,7 +266,7 @@ public class AddPrzepis extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(skladnikiComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jednostkaSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jednostkaLabel)
                             .addComponent(dodajSkladnikButton))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -179,11 +281,113 @@ public class AddPrzepis extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void dodajSkladnikButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dodajSkladnikButtonActionPerformed
-        // TODO add your handling code here:
+        Skladnik skladnik = this.skladniks.get(this.skladnikiComboBox.getSelectedIndex());
+
+        ArrayList<String> foundSkladniks = new ArrayList<>();
+        DefaultListModel listModel = (DefaultListModel)this.skladnikiList.getModel();
+        for(int i = 0; i < listModel.getSize(); ++i) {
+            if(((String)listModel.getElementAt(i)).contains(skladnik.getNazwa())) {
+                foundSkladniks.add((String)listModel.getElementAt(i));
+            }
+        }
+        
+        if(foundSkladniks.size() > 0) {
+            listModel.removeElement(foundSkladniks.get(0));
+        }
+        else
+        {
+            listModel.addElement(skladnik.getNazwa() + ": " +
+                                 this.jednostkaSpinner.getValue() + " " +
+                                 this.jednostkaLabel.getText());
+        }
     }//GEN-LAST:event_dodajSkladnikButtonActionPerformed
 
     private void stworzPrzepisPushButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stworzPrzepisPushButtonActionPerformed
-        // TODO add your handling code here:
+        if(this.nazwaTextField.getText().length() == 0)
+        {
+            showMessageDialog("Upewnij się że podałeś nazwę przepisu!");
+            return;
+        }
+
+        if(this.przygotowanieTextArea.getText().length() == 0)
+        {
+            showMessageDialog("Upewnij się że podałeś sposób przyrządzenia!");
+            return;
+        }
+
+        if(((DefaultListModel)this.skladnikiList.getModel()).isEmpty())
+        {
+            showMessageDialog("Upewnij się że dodałeś do co najmniej jeden składnik!");
+            return;
+        }
+
+
+
+        ArrayList<PrzepisSkladnik> skladniksList = new ArrayList<>();
+        for(Skladnik skladnik : skladniks) {
+            ArrayList<String> foundSkladniks = new ArrayList<>();
+            DefaultListModel listModel = (DefaultListModel)this.skladnikiList.getModel();
+            for(int i = 0; i < listModel.getSize(); ++i) {
+                if(((String)listModel.getElementAt(i)).contains(skladnik.getNazwa())) {
+                    foundSkladniks.add((String)listModel.getElementAt(i));
+                }
+            }
+            
+            if(foundSkladniks.size() > 0) {
+                int skladnikCount = Integer.parseInt(foundSkladniks.get(0).split(":")[1].trim().split(" ")[0]);
+                PrzepisSkladnik newSkladnik = new PrzepisSkladnik(skladnikCount, skladnik);
+                skladniksList.add(newSkladnik);
+            }
+        }
+        
+        Connection con = null;
+        try{
+            Class.forName("org.sqlite.JDBC");
+            try{
+                con = DriverManager.getConnection("jdbc:sqlite:../DB/cookbook.db");
+                Statement state = con.createStatement();
+            
+                if(this.isPrzepisBeingEdited) {
+                    this.editedPrzepis.setNazwa(this.nazwaTextField.getText());
+                    this.editedPrzepis.setCzasPrzygotowania((Integer) this.czasPrzygotowaniaSpinner.getValue());
+                    this.editedPrzepis.setTrudnosc(Przepis.Trudnosc.values()[this.trudnoscComboBox.getSelectedIndex()]);
+                    this.editedPrzepis.setUlubione(this.ulubioneCheckBox.isSelected());
+                    this.editedPrzepis.setInstrukcja(this.przygotowanieTextArea.getText());
+                    this.editedPrzepis.setSkladniki(skladniksList);
+
+                    editedPrzepis.updateDb(state);
+                    showMessageDialog("Przepis poprawnie edytowany! Smacznego!");
+                }
+                else
+                {
+                    Przepis przepis = new Przepis(0, 
+                                                  this.nazwaTextField.getText(),
+                                                  (Integer) this.czasPrzygotowaniaSpinner.getValue(),
+                                                  Przepis.Trudnosc.values()[this.trudnoscComboBox.getSelectedIndex()],
+                                                  this.ulubioneCheckBox.isSelected(),
+                                                  this.przygotowanieTextArea.getText());
+                    przepis.setSkladniki(skladniksList);
+
+                    przepis.insertToDb(state);
+                    showMessageDialog("Przepis poprawnie dodany! Smacznego!");
+                }
+            }
+            catch(SQLException e){
+                System.out.println(e.getMessage());
+            }
+            
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        finally{
+            try{
+                con.close();
+            }
+            catch(SQLException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }//GEN-LAST:event_stworzPrzepisPushButtonActionPerformed
 
     /**
@@ -227,6 +431,10 @@ public class AddPrzepis extends javax.swing.JDialog {
             }
         });
     }
+    
+    void showMessageDialog(String message) {
+        JOptionPane.showMessageDialog(this, message);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSpinner czasPrzygotowaniaSpinner;
@@ -241,8 +449,8 @@ public class AddPrzepis extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JSpinner jSpinner2;
     private javax.swing.JLabel jednostkaLabel;
+    private javax.swing.JSpinner jednostkaSpinner;
     private javax.swing.JTextField nazwaTextField;
     private javax.swing.JTextArea przygotowanieTextArea;
     private javax.swing.JComboBox skladnikiComboBox;
